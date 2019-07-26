@@ -12,11 +12,11 @@
 		</v-flex>
 		<v-flex md7 lg8>
 			<v-layout row wrap>
-				<v-flex>
+				<v-flex md12 lg12>
 					<settings-communication-panel></settings-communication-panel>
 				</v-flex>
 				<v-flex>
-					<settings-list-items-panel></settings-list-items-panel>
+					<!--<settings-list-items-panel></settings-list-items-panel>-->
 				</v-flex>
 			</v-layout>
 		</v-flex>

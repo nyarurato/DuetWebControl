@@ -281,6 +281,10 @@ export default class PollConnector extends BaseConnector {
 					homed: !!response.data.coords.axesHomed[drive],
 					machinePosition
 				})),
+				axes: response.data.coords.machine.map((nativePosition, drive) => ({
+					homed: !!response.data.coords.axesHomed[drive],
+					nativePosition
+				})),
 				babystepZ: response.data.params.babystep,
 				currentMove: {
 					requestedSpeed: (response.data.speeds !== undefined) ? response.data.speeds.requested : null,

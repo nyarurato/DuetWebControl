@@ -1,35 +1,33 @@
 <template>
-	<v-layout row wrap>
-		<v-flex xs12 sm8 md8 lg9 xl9>
-			<v-layout column>
-				<v-flex>
-					<movement-panel></movement-panel>
-				</v-flex>
+	<v-layout column>
+		<v-flex>
+			<job-progress></job-progress>
+		</v-flex>
 
-				<v-flex>
-					<v-layout row>
-						<v-flex sm12 md9 lg9 xl10>
-							<extrude-panel></extrude-panel>
-						</v-flex>
-
-						<v-flex class="hidden-sm-and-down" align-self-center md3 lg3 xl2>
-							<atx-panel></atx-panel>
+		<v-flex>
+			<v-layout row wrap full-height>
+				<v-flex order-sm2 order-md1 md3 xl2>
+					<v-layout row wrap align-center>
+						<v-flex xs7 sm6 md12>
+							<job-control-panel></job-control-panel>
 						</v-flex>
 					</v-layout>
 				</v-flex>
-
-				<v-flex md9>
-					<fan-panel></fan-panel>
+				<v-flex order-sm1 order-md2 md6 xl7 d-flex>
+					<v-layout column>
+						<v-flex xs5 sm6 md12>
+							<babystepping-panel></babystepping-panel>
+						</v-flex>
+					</v-layout>
 				</v-flex>
-
-				<v-flex class="hidden-md-and-up">
-					<atx-panel></atx-panel>
+				<v-flex order-sm3 order-md3 md3 xl3>
+					<v-layout column>
+						<v-flex>
+							<speed-factor-panel></speed-factor-panel>
+						</v-flex>
+					</v-layout>
 				</v-flex>
 			</v-layout>
-		</v-flex>
-
-		<v-flex class="hidden-xs-only" sm4 md4 lg3 xl3>
-			<macro-list></macro-list>
 		</v-flex>
 	</v-layout>
 </template>

@@ -16,7 +16,16 @@ Vue.config.productionTip = false
 
 Vue.use(plugins)
 Vue.use(Vuetify, {
-	lang: { t: (key, ...params) => i18n.t(key, params) }
+	lang: { t: (key, ...params) => i18n.t(key, params) },
+	theme: {
+		primary: '#ff6600',
+		secondary: '#ff6600',
+		accent: '#ff6600',
+		error: '#ff0000',
+  		info: '#ff6600',
+ 		success: '#ff6600',
+  		warning: '#ff0000'
+	  }
 })
 
 /* eslint-disable no-new */

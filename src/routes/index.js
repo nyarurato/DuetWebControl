@@ -42,7 +42,7 @@ export const Routing = [
 		]
 	},
 	// Job
-	{
+	/*{
 		icon: 'print',
 		caption: 'menu.job.caption',
 		pages: [
@@ -67,9 +67,10 @@ export const Routing = [
 				caption: 'menu.job.visualiser',
 				path: '/Job/Visualiser',
 				component: Job.Visualiser
-			} */
+			}
 		]
 	},
+	*/
 	// Files
 	{
 		icon: 'sd_storage',
@@ -88,13 +89,6 @@ export const Routing = [
 				caption: 'menu.files.macros',
 				path: '/Files/Macros',
 				component: Files.Macros
-			},
-			// Filaments
-			{
-				icon: 'radio_button_checked',
-				caption: 'menu.files.filaments',
-				path: '/Files/Filaments',
-				component: Files.Filaments
 			},
 			// Display
 			{

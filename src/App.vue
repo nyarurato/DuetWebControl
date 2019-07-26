@@ -1,4 +1,5 @@
 <style>
+
 #title:not(:hover) {
 	color: inherit;
 }
@@ -21,6 +22,7 @@
 
 .global-control.theme--light {
 	background-color: #F5F5F5 !important;
+	
 }
 #global-container .v-card.theme--light {
 	background-color: #F5F5F5 !important;
@@ -44,6 +46,7 @@ input::-webkit-inner-spin-button {
 a:not(:hover) {
 	text-decoration: none;
 }
+
 </style>
 
 <template>
@@ -102,17 +105,22 @@ a:not(:hover) {
 			<v-scroll-y-transition>
 				<v-container fluid id="global-container" class="container" v-show="!hideGlobalContainer || $vuetify.breakpoint.mdAndUp">
 					<v-layout row wrap>
-						<v-flex xs12 sm6 md4 lg4>
+						
+						<v-flex xs12 sm12 md12 lg9>
+							<movement-panel></movement-panel>
+						</v-flex>
+
+						<!--<v-flex xs12 sm6 md6 lg3>
+							<macro-list></macro-list>
+						</v-flex>-->
+						
+						<v-flex xs12 sm6 md6 lg3>
 							<status-panel></status-panel>
 						</v-flex>
 
-						<v-flex xs12 sm6 md5 lg4>
-							<tools-panel></tools-panel>
-						</v-flex>
-
-						<v-flex v-if="$vuetify.breakpoint.mdAndUp" :d-flex="hasTemperaturesToDisplay" md3 lg4>
+						<!--<v-flex v-if="$vuetify.breakpoint.mdAndUp" :d-flex="hasTemperaturesToDisplay" md3 lg4>
 							<temperature-chart></temperature-chart>
-						</v-flex>
+						</v-flex>-->
 					</v-layout>
 				</v-container>
 			</v-scroll-y-transition>
@@ -163,7 +171,9 @@ export default {
 				return this.darkTheme ? 'red darken-5' : 'red lighten-4';
 			}
 			return this.darkTheme ? 'green darken-5' : 'green lighten-4';
-		}
+		},
+		
+
 	},
 	data() {
 		return {
@@ -240,7 +250,7 @@ export default {
 		isPrinting(to) {
 			if (to) {
 				// Go to Job Status when a print starts
-				this.$router.push('/Job/Status');
+				this.$router.push('/');
 			}
 		},
 		name() { this.updateTitle(); },

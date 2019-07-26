@@ -8,6 +8,7 @@ export class Axis {
 	drives = []
 	homed = null
 	machinePosition = null
+	nativePosition = null
 	min = null
 	minProbed = false
 	max = null

@@ -44,7 +44,7 @@ a:not(:hover) {
 					<v-layout row align-center>
 						<v-flex tag="strong" class="category-header">
 							<a href="#" @click.prevent="displayToolPosition = !displayToolPosition">
-								{{ $t(displayToolPosition ? 'panel.status.toolPosition' : 'panel.status.machinePosition') }}
+								{{ $t(!displayToolPosition ? 'panel.status.toolPosition' : 'panel.status.machinePosition') }}
 							</a>
 						</v-flex>
 
@@ -67,6 +67,31 @@ a:not(:hover) {
 
 				<v-divider class="my-2" v-show="move.axes.length"></v-divider>
 
+				<v-flex v-show="move.axes.length">
+					<v-layout row align-center>
+						<v-flex tag="strong" class="category-header">
+								{{ $t('panel.status.nativePosition') }}
+						</v-flex>
+
+						<v-flex>
+							<v-layout row wrap>
+								<v-flex v-for="(axis, index) in move.axes" :key="index" grow class="equal-width">
+									<v-layout column>
+										<v-flex v-if="axis.visible" tag="strong">
+											{{ axis.letter }}
+										</v-flex>
+										<v-flex v-if="axis.visible" tag="span">
+											{{ displayAxisNativePosition(axis, index) }}
+										</v-flex>
+									</v-layout>
+								</v-flex>
+							</v-layout>
+						</v-flex>
+					</v-layout>
+				</v-flex>
+
+				<!-- <v-divider class="my-2" v-show="move.axes.length"></v-divider>
+
 				<v-flex v-show="move.extruders.length">
 					<v-layout row align-center>
 						<v-flex tag="strong" class="category-header">
@@ -88,7 +113,7 @@ a:not(:hover) {
 							</v-layout>
 						</v-flex>
 					</v-layout>
-				</v-flex>
+				</v-flex> -->
 
 				<v-divider class="my-2" v-show="move.extruders.length"></v-divider>
 
@@ -176,7 +201,7 @@ a:not(:hover) {
 									</v-layout>
 								</v-flex>
 
-								<v-flex v-show="fanRPM.length">
+								<!-- <v-flex v-show="fanRPM.length">
 									<v-layout column>
 										<v-flex tag="strong">
 											{{ $t('panel.status.fanRPM') }}
@@ -186,7 +211,7 @@ a:not(:hover) {
 											{{ fanRPM.join(', ') }}
 										</v-flex>
 									</v-layout>
-								</v-flex>
+								</v-flex> -->
 
 								<v-flex v-if="sensors.probes.length">
 									<v-layout column>
@@ -243,6 +268,10 @@ export default {
 	methods: {
 		displayAxisPosition(axis, index) {
 			const position = this.displayToolPosition ? this.move.drives[index].position : axis.machinePosition;
+			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 1);
+		},
+		displayAxisNativePosition(axis, index) {
+			const position = axis.nativePosition;
 			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 1);
 		},
 		probeSpanClasses(probe, index) {

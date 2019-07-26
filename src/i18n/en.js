@@ -30,9 +30,21 @@ export default {
 		},
 		home: {
 			caption: 'Home {0}',
-			captionAll: 'Home All',
+			captionAll: 'Home XYZ',
 			title: 'Home the {0} axis (G28 {0})',
 			titleAll: 'Home all axes (G28)'
+		},
+		work: {
+			caption: 'Set {0}',
+			captionAll: 'Set XYZ',
+			title: 'Set the work {0} axis',
+			titleAll: 'Set the work XYZ'
+		},
+		workGoto: {
+			caption: 'GoTo {0}',
+			captionAll: 'GoTo Work XYZ Zero',
+			title: 'GoTo the work {0} axis zero',
+			titleAll: 'GoTo the work XYZ zero'
 		},
 		newDirectory: {
 			caption: 'New Directory'
@@ -624,7 +636,8 @@ export default {
 			caption: 'Status',
 			mode: 'Mode: {0}',
 			toolPosition: 'Tool Position',
-			machinePosition: 'Machine Position',
+			machinePosition: 'Work Position',
+			nativePosition: 'Machine Position',
 			extruders: 'Extruder Drives',
 			extruderDrive: 'Drive {0}',
 			speeds: 'Speeds',

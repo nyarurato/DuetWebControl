@@ -161,7 +161,7 @@ export default function(connector) {
 				workplaceCoordinates: []
 			},
 			network: {
-				name: connector ? `(${connector.hostname})` : 'Duet Web Control 2',
+				name: connector ? `(${connector.hostname})` : 'WorkBee Control',
 				password: null,
 				interfaces: []
 			},
