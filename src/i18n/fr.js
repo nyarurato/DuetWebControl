@@ -338,6 +338,7 @@ export default {
 			delete: 'Supprimer',
 			downloadZIP: 'Télécharger en ZIP',
 			noFiles: 'Aucun Fichiers ou Répertoires',
+			driveUnmounted: 'Le variateur n\'est pas monté',
 			goUp: 'Remonter'
 		},
 		display: {

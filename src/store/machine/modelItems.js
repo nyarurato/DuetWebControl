@@ -26,12 +26,14 @@ export class BedOrChamber {
 
 export class Channel {
 	constructor(initData) { quickPatch(this, initData); }
+	compatibility = 1
 	feedrate = 50
 	relativeExtrusion = true
 	volumetricExtrusion = false
 	relativePositioning = false
 	stackDepth = 0
 	usingInches = false
+	lineNumber = 0
 }
 
 export class Drive {
@@ -168,6 +170,12 @@ export class Layer {
 	fractionPrinted = null
 }
 
+export class Laser {
+	constructor(initData) { quickPatch(this, initData); }
+	actualPwm = 0.0;
+	requestedPwm = 0.0;
+}
+
 export class NetworkInterface {
 	constructor(initData) { quickPatch(this, initData); }
 	type = null					// one of ['wifi', 'lan']
@@ -191,8 +199,9 @@ export class Probe {
 	threshold = 500
 	speed = 2
 	diveHeight = 5
-	offset = []
+	offsets = []
 	triggerHeight = 0.7
+	filtered = true
 	inverted = false
 	recoveryTime = 0
 	travelSpeed = 100
@@ -224,15 +233,21 @@ export class Tool {
 	active = []
 	standby = []
 	name = null
+	filamentExtruder = -1
 	filament = null
 	fans = []
 	heaters = []
 	extruders = []
 	mix = []
 	spindle = -1
-	axes = []							// may hold sub-arrays of drives per axis
-	offsets = []						// offsets in the same order as the axes
-	offsetsProbed = false
+	axes = []					// may hold sub-arrays of drives per axis
+	offsets = []				// offsets in the same order as the axes
+	offsetsProbed = 0			// bitmap of the probed axes
+}
+
+export class UserVariable {
+	name = ""
+	value = ""
 }
 
 function fixObject(item, preset) {
@@ -280,7 +295,7 @@ export function fixMachineItems(state, mergeData) {
 	}
 
 	if (mergeData.fans) {
-		fixItems(state.fans, Fan);
+		fixItems(state.fans, Fan)
 	}
 
 	if (mergeData.heat) {
@@ -296,6 +311,10 @@ export function fixMachineItems(state, mergeData) {
 		if (mergeData.heat.heaters) {
 			fixItems(state.heat.heaters, Heater);
 		}
+	}
+
+	if (mergeData.lasers) {
+		fixItems(state.lasers, Laser);
 	}
 
 	// Layers are not verified for performance reasons
@@ -331,5 +350,9 @@ export function fixMachineItems(state, mergeData) {
 
 	if (mergeData.tools) {
 		fixItems(state.tools, Tool);
+	}
+
+	if (mergeData.userVariables) {
+		fixItems(state.userVariables, UserVariable);
 	}
 }

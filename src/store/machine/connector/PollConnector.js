@@ -20,7 +20,7 @@ export default class PollConnector extends BaseConnector {
 	static async connect(hostname, username, password) {
 		let response;
 		try {
-			response = await axios.get(`http://${hostname}/rr_connect`, {
+			response = await axios.get(`${location.protocol}//${hostname}/rr_connect`, {
 				params: {
 					password,
 					time: timeToStr(new Date())
@@ -60,7 +60,6 @@ export default class PollConnector extends BaseConnector {
 	layers = []
 	currentFileInfo = new FileInfo()
 	printStats = {}
-	messageBoxShown = false;
 
 	constructor(hostname, password, responseData) {
 		super('poll', hostname);
@@ -69,7 +68,7 @@ export default class PollConnector extends BaseConnector {
 		this.sessionTimeout = responseData.sessionTimeout || 8000;	/// default timeout in RRF is 8000ms
 
 		this.axios = axios.create({
-			baseURL: `http://${hostname}/`,
+			baseURL: `${location.protocol}//${hostname}/`,
 			cancelToken: this.cancelSource.token,
 			timeout: this.sessionTimeout
 		});
@@ -85,7 +84,7 @@ export default class PollConnector extends BaseConnector {
 
 		// Attempt to reconnect
 		try {
-			const response = await axios.get(`http://${this.hostname}/rr_connect`, {
+			const response = await axios.get(`${location.protocol}//${this.hostname}/rr_connect`, {
 				params: {
 					password: this.password,
 					time: timeToStr(new Date())
@@ -310,7 +309,7 @@ export default class PollConnector extends BaseConnector {
 				]
 			} : {},
 			state: {
-				atxPower: !!response.data.params.atxPower,
+				atxPower: (response.data.params.atxPower === -1) ? null : (response.data.params.atxPower !== 0),
 				currentTool: response.data.currentTool,
 				status: this.convertStatusLetter(response.data.status)
 			},
@@ -515,49 +514,47 @@ export default class PollConnector extends BaseConnector {
 		}
 
 		// Output Utilities
+		let beepFrequency = 0, beepDuration = 0, displayMessage = "", msgBoxMode = null;
 		if (response.data.output) {
 			// Beep
-			const frequency = response.data.output.beepFrequency;
-			const duration = response.data.output.beepDuration;
-			if (frequency && duration) {
-				this.store.commit(`machines/${this.hostname}/beep`, { frequency, duration });
+			if (response.data.output.hasOwnProperty("beepFrequency")) {
+				beepFrequency = response.data.output.beepFrequency;
+				beepDuration = response.data.output.beepDuration;
 			}
 
-			// Message
-			const message = response.data.output.message;
-			if (message) {
-				this.store.commit(`machines/${this.hostname}/message`, message);
+			// Persistent Message
+			if (response.data.output.hasOwnProperty("message")) {
+				displayMessage = response.data.output.message;
 			}
 
 			// Message Box
 			const msgBox = response.data.output.msgBox;
 			if (msgBox) {
-				this.messageBoxShown = true;
+				msgBoxMode = msgBox.mode;
 				quickPatch(newData, {
 					messageBox: {
-						mode: msgBox.mode,
 						title: msgBox.title,
 						message: msgBox.msg,
 						timeout: msgBox.timeout,
-						axisControls: bitmapToArray(msgBox.controls)
-					}
-				});
-			} else if (this.messageBoxShown) {
-				this.messageBoxShown = false;
-				quickPatch(newData, {
-					messageBox: {
-						mode: null
+						axisControls: bitmapToArray(msgBox.controls),
+						seq: msgBox.seq
 					}
 				});
 			}
-		} else if (this.messageBoxShown) {
-			this.messageBoxShown = false;
-			quickPatch(newData, {
-				messageBox: {
-					mode: null
-				}
-			});
 		}
+
+		quickPatch(newData, {
+			messageBox: {
+				mode: msgBoxMode
+			},
+			state: {
+				beep: {
+					frequency: beepFrequency,
+					duration: beepDuration
+				},
+				displayMessage: displayMessage
+			}
+		});
 
 		// Spindles
 		if (response.data.spindles) {

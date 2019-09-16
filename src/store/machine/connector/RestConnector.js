@@ -16,7 +16,8 @@ import { strToTime } from '../../../utils/time.js'
 
 export default class RestConnector extends BaseConnector {
 	static async connect(hostname, username, password) {
-		const socket = new WebSocket(`ws://${hostname}/machine`);
+		const socketProtocol = location.protocol === "https:" ? "wss:" : "ws:";
+		const socket = new WebSocket(`${socketProtocol}//${hostname}/machine`);
 		const model = await new Promise(function(resolve, reject) {
 			socket.onmessage = function(e) {
 				// Successfully connected, the first message is the full object model
@@ -49,9 +50,12 @@ export default class RestConnector extends BaseConnector {
 		this.password = password;
 		this.socket = socket;
 		this.model = model;
+		if (model.job && model.job.layers) {
+			this.layers = model.job.layers;
+		}
 
 		this.axios = axios.create({
-			baseURL: `http://${hostname}/`,
+			baseURL:  `${location.protocol}//${hostname}/`,
 			cancelToken: this.cancelSource.token,
 			timeout: 8000		// default RRF session timeout
 		});
@@ -166,18 +170,41 @@ export default class RestConnector extends BaseConnector {
 			delete this.model.messages;
 		}
 
+		// Send PING in predefined intervals to detect disconnects from the client side
+		that.pingTask = setTimeout(function() {
+			// Although the WebSocket standard is supposed to provide PING frames,
+			// there is no way to send them since a WebSocket instance does not provide a method for that.
+			// Hence we rely on our own optional PING-PONG implementation
+			that.socket.send('PING\n');
+			that.pingTask = undefined;
+		}, that.settings.pingInterval);
+
 		// Set up socket events
 		this.socket.onmessage = async function(e) {
-			if (that.socket === null || e.data === 'PONG\n') {
+			// Don't do anything if the connection has been terminated...
+			if (that.socket == null) {
 				return;
 			}
-			const data = JSON.parse(e.data);
 
-			// Make sure to detect when the connection is terminated
+			// Use PING/PONG messages to detect connection interrupts
 			if (that.pingTask) {
 				clearTimeout(that.pingTask);
-				that.pingTask = undefined;
 			}
+
+			that.pingTask = setTimeout(function() {
+				// Although the WebSocket standard is supposed to provide PING frames,
+				// there is no way to send them since a WebSocket instance does not provide a method for that.
+				// Hence we rely on our own optional PING-PONG implementation
+				that.socket.send('PING\n');
+				that.pingTask = undefined;
+			}, that.settings.pingInterval);
+
+			if (e.data === 'PONG\n') {
+				return;
+			}
+
+			// Process model updates
+			const data = JSON.parse(e.data);
 
 			// Deal with generic messages
 			if (data.messages) {
@@ -211,18 +238,9 @@ export default class RestConnector extends BaseConnector {
 				data.job.layers = that.layers;
 			}
 
-			// Update model and acknowledge receival
+			// Update model and acknowledge receipt
 			await that.dispatch('update', data);
 			that.socket.send('OK\n');
-
-			// Send PING to the server to detect connection failures
-			that.pingTask = setTimeout(function() {
-				// Although the WebSocket standard is supposed to provide PING frames,
-				// there is no way to send them since a WebSocket instance does not provide a method for that.
-				// Hence we rely on our own optional PING-PONG implementation
-				that.socket.send('PING\n');
-				that.pingTask = undefined;
-			}, that.settings.pingInterval);
 		};
 
 		this.socket.onclose = function(e) {
