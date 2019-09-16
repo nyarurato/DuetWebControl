@@ -27,6 +27,8 @@ import SpeedFactorPanel from './SpeedFactorPanel.vue'
 import StatusPanel from './StatusPanel.vue'
 import ToolsPanel from './ToolsPanel.vue'
 import WebcamPanel from './WebcamPanel.vue'
+import PositionPanel from './PositionPanel.vue'
+import SensorPanel from './SensorPanel.vue'
 
 Vue.component('atx-panel', ATXPanel)
 Vue.component('babystepping-panel', BabysteppingPanel)
@@ -53,6 +55,8 @@ Vue.component('status-panel', StatusPanel)
 Vue.component('speed-factor-panel', SpeedFactorPanel)
 Vue.component('tools-panel', ToolsPanel)
 Vue.component('webcam-panel', WebcamPanel)
+Vue.component('position-panel', PositionPanel)
+Vue.component('sensor-panel', SensorPanel)
 
 export default {
 	ATXPanel,
@@ -79,5 +83,8 @@ export default {
 	SpeedFactorPanel,
 	StatusPanel,
 	ToolsPanel,
-	WebcamPanel
+	WebcamPanel,
+	PositionPanel,
+	SensorPanel,
+	
 }

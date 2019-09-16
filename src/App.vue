@@ -51,7 +51,7 @@ a:not(:hover) {
 
 <template>
 	<v-app :dark="darkTheme">
-		<v-navigation-drawer persistent clipped v-model="drawer" enable-resize-watcher fixed app>
+		<v-navigation-drawer persistent clipped v-model="drawer" enable-resize-watcher fixed app >
 			<div class="pa-2 hidden-sm-and-up">
 				<connect-btn v-if="isLocal" class="mb-3" block></connect-btn>
 				<emergency-btn block></emergency-btn>
@@ -105,17 +105,17 @@ a:not(:hover) {
 			<v-scroll-y-transition>
 				<v-container fluid id="global-container" class="container" v-show="!hideGlobalContainer || $vuetify.breakpoint.mdAndUp">
 					<v-layout row wrap>
-						
-						<v-flex xs12 sm12 md12 lg9>
-							<movement-panel></movement-panel>
-						</v-flex>
 
 						<!--<v-flex xs12 sm6 md6 lg3>
 							<macro-list></macro-list>
 						</v-flex>-->
 						
-						<v-flex xs12 sm6 md6 lg3>
-							<status-panel></status-panel>
+						<v-flex xs12 sm12 md12 lg12>
+							<position-panel></position-panel>
+						</v-flex>
+
+						<v-flex xs12 sm12 md12 lg12>
+							<movement-panel></movement-panel>
 						</v-flex>
 
 						<!--<v-flex v-if="$vuetify.breakpoint.mdAndUp" :d-flex="hasTemperaturesToDisplay" md3 lg4>
@@ -135,7 +135,7 @@ a:not(:hover) {
 		</v-content>
 
 		<!--<v-navigation-drawer temporary right v-model="rightDrawer" fixed app>
-			TODO Add quick access / component list here in design mode
+			TODO Add quick access / component list here in desgn mode
 		</v-navigation-drawer>-->
 
 		<connect-dialog></connect-dialog>

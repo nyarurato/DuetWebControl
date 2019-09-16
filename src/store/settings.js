@@ -27,8 +27,10 @@ export default {
 			useFix: false,								// do not append extra HTTP qualifier when reloading images
 			embedded: false,							// use iframe to embed webcam stream
 			rotation: 0,
-			flip: 'none'
-		}
+			flip: 'none',
+			
+		},
+		workCoordinateSystem: '1',
 	},
 	mutations: {
 		load(state, payload) {

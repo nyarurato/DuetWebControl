@@ -38,7 +38,7 @@ export default {
 		moveFeedrate: {
 			get() { return this.settings.moveFeedrate; },
 			set(value) { if (this.isNumber(value) && value > 0) { this.update({ moveFeedrate: value }); } }
-		}
+		},
 	},
 	methods: mapMutations('machine/settings', ['update'])
 }

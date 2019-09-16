@@ -216,6 +216,7 @@ export default function(connector) {
 			fractionPrinted: state => (state.job.filePosition && state.job.file.size) ? state.job.filePosition / state.job.file.size : 0,
 			isPrinting: state => ['pausing', 'paused', 'resuming', 'processing', 'simulating'].indexOf(state.state.status) !== -1,
 			isPaused: state => ['pausing', 'paused', 'resuming'].indexOf(state.state.status) !== -1,
+			isPausing: state => ['pausing'].indexOf(state.state.status) !== -1,
 			maxHeaterTemperature(state) {
 				let maxTemp
 				state.heat.heaters.forEach(function(heater) {

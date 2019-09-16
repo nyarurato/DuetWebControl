@@ -1,4 +1,5 @@
 <template>
+	<div>
 	<v-card>
 		<v-card-title class="pb-1">
 			<v-icon small class="mr-1">build</v-icon> {{ $t('panel.jobControl.caption') }}
@@ -18,20 +19,41 @@
 			</code-btn>
 
 			<v-switch :label="$t('panel.jobControl.autoSleep')" v-model="autoSleepActive" :disabled="uiFrozen" hide-details></v-switch>
+
+			<v-flex v-if="!isPaused">
+			<v-icon  small class="mr-1 mt-4">power</v-icon> {{ $t('panel.jobControl.captionPowerLoss') }}
+			</v-flex>
+
+			<v-btn v-if="!state.isPrinting" color="success" block :disabled="uiFrozen" @click="showPowerLossConfirm = true">
+				<v-icon class="mr-1">play_arrow</v-icon> {{ $t('panel.jobControl.powerLossResume') }}
+			</v-btn>
+
+			<code-btn v-if="state.isPrinting && !isPaused" color="error" block :disabled="uiFrozen" v-on:click.native="showIsPausing = true" :code="'M25'">
+				<v-icon class="mr-1">power</v-icon> {{ $t('panel.jobControl.controlledPowerOff') }}
+			</code-btn>
+
 		</v-card-text>
 	</v-card>
+	
+	<confirm-dialog :shown.sync="showPowerLossConfirm" :question="$t('dialog.powerLossConfirm.title')" :prompt="$t('dialog.powerLossConfirm.prompt')" @confirmed="powerLossConfirm"></confirm-dialog>
+	<confirm-dialog :shown.sync="showPowerLossSpindleConfirm" :question="$t('dialog.powerLossSpindleConfirm.title')" :prompt="$t('dialog.powerLossSpindleConfirm.prompt')" @confirmed="powerLossSpindleConfirm"></confirm-dialog>
+	<confirmed-power-off-dialog :shown.sync="showIsPaused" :message="$t('dialog.confirmPowerOffDialog.message')" @dismissed="showIsPausing = false"></confirmed-power-off-dialog>
+	<controlled-power-off-dialog :shown.sync="showIsPausing"></controlled-power-off-dialog>
+	</div>
 </template>
 
 <script>
 'use strict'
 
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
+	
 	computed: {
 		...mapGetters(['uiFrozen']),
 		...mapState('machine', ['autoSleep']),
 		...mapState('machine/model', ['job', 'state']),
+		...mapState("machine/model", ["move"]),
 		...mapGetters('machine/model', ['isPaused']),
 		autoSleepActive: {
 			get() { return this.autoSleep; },
@@ -72,8 +94,27 @@ export default {
 				return this.$t('panel.jobControl.repeatPrint');
 			}
 			return this.$t('panel.jobControl.repeatJob');
+		},
+		showIsPaused: function() {
+				return ((this.move.currentMove.requestedSpeed == 0) && (this.showIsPausing))? true : false;
+		},
+	},
+	data() {
+		return {
+			showPowerLossConfirm: false,
+			showPowerLossSpindleConfirm: false,
+			showIsPausing: false,
 		}
 	},
-	methods: mapMutations('machine', ['setAutoSleep'])
+	methods: { 
+		...mapMutations('machine', ['setAutoSleep']),
+		...mapActions('machine', ['sendCode']),
+		powerLossConfirm(){
+			this.showPowerLossSpindleConfirm = true;
+		},
+		powerLossSpindleConfirm(){
+			this.sendCode(`M916`);
+		},
+	}
 }
 </script>

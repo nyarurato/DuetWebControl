@@ -35,6 +35,16 @@ export default {
 			title: 'Déplace l\'axe {0} à son origine (G28 {0})',
 			titleAll: 'Déplace tout les axes aux origines (G28)'
 		},
+		work: {
+			caption: 'Ensemble {0}',
+			captionAll: 'Mettre le travail XYZ',
+			title: 'Définir le travail {0} axe',
+			titleAll: 'Définir le travail {0} XYZ'
+		},
+		workGoto: {
+			captionAll: 'Aller au travail XYZ Zero',
+			titleAll: 'Aller au travail XYZ zéro'
+		},
 		newDirectory: {
 			caption: 'Nouveau Dossier'
 		},
@@ -190,6 +200,20 @@ export default {
 			title: 'Installer Mise à Jour?',
 			prompt: 'Vous avez envoyer au moins une mise à jour logiciel. Voulez-vous les installer maintenant?'
 		},
+		powerLossConfirm: {
+			title: 'Reprendre de la perte de puissance?',
+			prompt: 'Êtes-vous sûr de vouloir reprendre un travail après une panne de courant?'
+		},
+		powerLossSpindleConfirm: {
+			title: 'Routeur / broche allumé?',
+			prompt: 'Veuillez confirmer que le routeur / la broche est tourné et au bon régime.'
+		},
+		controlledPowerOffDialog: {
+			message: 'Veuillez patienter, pause de la machine',
+		},
+		confirmPowerOffDialog: {
+			message: 'la machine peut maintenant être éteinte.'
+		},
 		inputRequired: 'Merci d\'entrer une nouvelle valeur',
 		numberRequired: 'Merci d\'entrer un nombre valide'
 	},
@@ -239,6 +263,7 @@ export default {
 	},
 	generic: {
 		ok: 'OK',
+		confirm: 'Confirmer',
 		cancel: 'Annuler',
 		yes: 'Oui',
 		no: 'Non',
@@ -294,12 +319,13 @@ export default {
 		simulated: 'Simulation {0}, 100 % complète',
 		processing: 'Traitement {0}, {1} complet',
 		processed: 'Traitement {0}, 100 % complet',
-		printing: 'Impression {0}, {1} complète',
-		printed: 'Impression {0}, 100 % complète',
+		printing: 'Usinage {0}, {1} complète',
+		printed: 'Fini {0}, 100 % complète',
 		noJob: 'Aucun Travail en Cours.',
 		layer: 'Couche {0} sur {1}',
 		filament: 'Utilisation de Filament: {0}',
-		filamentRemaining: '{0} restant'
+		filamentRemaining: '{0} restant',
+		timeRemaining: 'Temps restant estimé: {0}'
 	},
 	list: {
 		baseFileList: {
@@ -448,7 +474,7 @@ export default {
 			off: 'Off'
 		},
 		babystepping: {
-			caption: 'Z Babystepping',
+			caption: 'Décalage de réglage sur l`axe Z',
 			current: 'Décalage Actuel: {0}'
 		},
 		extrude: {
@@ -511,7 +537,10 @@ export default {
 			repeatJob: 'Recommencer',
 			repeatPrint: 'Réimprimer',
 			repeatSimulation: 'Simuler à Nouveau',
-			autoSleep: 'Activer Veille Automatique'
+			autoSleep: 'Activer Veille Automatique',
+			powerLossResume: 'Résumé de perte de puissance',
+			controlledPowerOff: 'Mise hors tension contrôlée',
+			captionPowerLoss: 'Contrôle de perte de puissance'
 		},
 		jobData: {
 			caption: 'Données Collectés',
@@ -547,7 +576,9 @@ export default {
 			runMesh: 'Lancer Mesh Compensation (G29)',
 			loadMesh: 'Charger la Carte de Hauteur Sauvegardée (G29 S1)',
 			axesNotHomed: 'L\'axe suivant  n\'a pas été à son origine:|Les axes suivantss n\'ont pas été à leur origine:',
-			noAxes: 'Pas d\'axes'
+			noAxes: 'Pas d\'axes',
+			workSelect: 'Système de coordonnées de travail sélectionné',
+			workSelectHint: 'Sélection des coordonnées de travail'
 		},
 		settingsAbout: {
 			caption: 'À propos',
@@ -598,7 +629,7 @@ export default {
 			caption: 'Machine-Spécifique',
 			revertDWC: 'Revenir à DWC1',
 			babystepAmount: 'Montant Babystep ({0})',
-			moveFeedrate: 'Vitesse pour les boutons de mouvement ({0})'
+			moveFeedrate: 'Vitesse pour les boutons de mouvement ({0})',
 		},
 		settingsNotifications: {
 			caption: 'Notifications',
@@ -625,7 +656,8 @@ export default {
 			caption: 'Status',
 			mode: 'Mode: {0}',
 			toolPosition: 'Position Outil',
-			machinePosition: 'Position Machine',
+			machinePosition: 'Position de travail',
+			nativePosition: 'Position de la machine',
 			extruders: 'Extrudeuse',
 			extruderDrive: 'Moteur {0}',
 			speeds: 'Vitesses',
@@ -639,6 +671,48 @@ export default {
 			fanRPM: 'TPM Ventilateur',
 			probe: 'Sonde-Z|Sondes-Z',
 			noStatus: 'Pas de Statut'
+		},
+		positionPanel: {
+			caption: 'Positions & Pointe',
+			mode: 'Mode: {0}',
+			toolPosition: 'Position Outil',
+			machinePosition: 'Position de travail',
+			nativePosition: 'Position de la machine',
+			extruders: 'Extrudeuse',
+			extruderDrive: 'Moteur {0}',
+			speeds: 'Vitesses',
+			requestedSpeed: 'Vitesse Demandée',
+			topSpeed: 'Vitesses de Pointe',
+			sensors: 'Capteurs',
+			mcuTemp: 'Température MCU',
+			mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
+			vIn: 'Vin',
+			vInTitle: 'Minimum: {0}, Maximum {1}',
+			fanRPM: 'TPM Ventilateur',
+			probe: 'Sonde-Z|Sondes-Z',
+			noStatus: 'Pas de Statut'
+		},
+		sensor: {
+			caption: 'Capteurs',
+			mode: 'Mode: {0}',
+			toolPosition: 'Position Outil',
+			machinePosition: 'Position Machine',
+			extruders: 'Extrudeuse',
+			extruderDrive: 'Moteur {0}',
+			speeds: 'Vitesses',
+			requestedSpeed: 'Vitesse Demandée',
+			topSpeed: 'Vitesses de Pointe',
+			sensors: 'Capteurs',
+			mcuTemp: 'Température MCU',
+			mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
+			vIn: 'Vin',
+			vInTitle: 'Minimum: {0}, Maximum {1}',
+			fanRPM: 'TPM Ventilateur',
+			probe: 'Sonde-Z|Sondes-Z',
+			noStatus: 'Pas de Statut',
+			endstopStatus: 'Statut de fin de course',
+			endstopTriggered: 'Déclenché',
+			endstopNotTriggered: 'Pas Déclenché'
 		},
 		tools: {
 			caption: 'Outils',

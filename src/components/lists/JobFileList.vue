@@ -93,23 +93,6 @@ export default {
 					unit: 'date'
 				},
 				{
-					text: () => i18n.t('list.jobs.height'),
-					value: 'height',
-					precision: 2,
-					unit: 'mm'
-				},
-				{
-					text: () => i18n.t('list.jobs.layerHeight'),
-					value: 'layerHeight',
-					precision: 2,
-					unit: 'mm'
-				},
-				{
-					text: () => i18n.t('list.jobs.filament'),
-					value: 'filament',
-					unit: 'filaments'
-				},
-				{
 					text: () => i18n.t('list.jobs.printTime'),
 					value: 'printTime',
 					unit: 'time'
@@ -119,10 +102,7 @@ export default {
 					value: 'simulatedTime',
 					unit: 'time'
 				},
-				{
-					text: () => i18n.t('list.jobs.generatedBy'),
-					value: 'generatedBy'
-				}
+				
 			],
 			loadingValue: false,
 			fileinfoDirectory: undefined,

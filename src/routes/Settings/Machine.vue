@@ -18,6 +18,9 @@
 				<v-flex>
 					<!--<settings-list-items-panel></settings-list-items-panel>-->
 				</v-flex>
+				<v-flex>
+					<sensor-panel></sensor-panel>
+				</v-flex>
 			</v-layout>
 		</v-flex>
 	</v-layout>

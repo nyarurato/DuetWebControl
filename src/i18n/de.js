@@ -34,6 +34,16 @@ export default {
 			title: 'Referenziere die {0}-Achse (G28 {0})',
 			titleAll: 'Alle Achsen referenzieren (G28)'
 		},
+		work: {
+			caption: 'Einstellen {0}',
+			captionAll: 'Arbeit einstellen {0} XYZ',
+			title: 'Stellen Sie die Arbeitsachse {0} ein',
+			titleAll: 'Stellen Sie die Arbeit {0} XYZ ein'
+		},
+		workGoto: {
+			captionAll: 'Geh zur Arbeit XYZ Null',
+			titleAll: 'Gehe arbeiten XYZ Null'
+		},
 		newDirectory: {
 			caption: 'Neues Verzeichnis'
 		},
@@ -189,6 +199,20 @@ export default {
 			title: 'Updates installieren?',
 			prompt: 'Sie haben gerade mindestens ein Firmwareupdate hochgeladen. Möchten Sie diese jetzt installieren?'
 		},
+		powerLossConfirm: {
+			title: 'Nach Stromausfall fortfahren?',
+			prompt: 'Sind Sie sicher, dass Sie einen Job nach einem Stromausfall wieder aufnehmen möchten?'
+		},
+		powerLossSpindleConfirm: {
+			title: 'Router / Spindel an?',
+			prompt: 'Vergewissern Sie sich, dass der Fräser / die Spindel gedreht ist und die richtige Drehzahl hat.'
+		},
+		controlledPowerOffDialog: {
+			message: 'Bitte warten, Maschine pausiert',
+		},
+		confirmPowerOffDialog: {
+			message: 'Die Maschine kann jetzt ausgeschaltet werden.'
+		},
 		inputRequired: 'Bitte Wert eingeben',
 		numberRequired: 'Bitte gültige Zahl eingeben'
 	},
@@ -238,6 +262,7 @@ export default {
 	},
 	generic: {
 		ok: 'OK',
+		confirm: 'Bestätigen',
 		cancel: 'Abbrechen',
 		yes: 'Ja',
 		no: 'Nein',
@@ -293,12 +318,13 @@ export default {
 		simulated: 'Simulation von {0}, 100 % abgeschlossen',
 		processing: 'Verarbeite {0}, {1} abgeschlossen',
 		processed: 'Verarbeitung von {0}, 100 % abgeschlossen',
-		printing: 'Drucke {0}, {1} abgeschlossen',
-		printed: 'Druck von {0}, 100 % abgeschlossen',
+		printing: 'Bearbeitung {0}, {1} abgeschlossen',
+		printed: 'Fertig {0}, 100 % abgeschlossen',
 		noJob: 'Kein Auftrag wird ausgeführt.',
 		layer: 'Schicht {0} von {1}',
 		filament: 'Filamentverbrauch: {0}',
-		filamentRemaining: '{0} verbleibend'
+		filamentRemaining: '{0} verbleibend',
+		timeRemaining: 'Geschätzte verbleibende Zeit: {0}',
 	},
 	list: {
 		baseFileList: {
@@ -447,7 +473,7 @@ export default {
 			off: 'Aus'
 		},
 		babystepping: {
-			caption: 'Z-Babystepping',
+			caption: 'Versatz der Z-Achsen-Anpassung',
 			current: 'Aktueller Versatz: {0}'
 		},
 		extrude: {
@@ -510,7 +536,10 @@ export default {
 			repeatJob: 'Nochmal starten',
 			repeatPrint: 'Nochmal drucken',
 			repeatSimulation: 'Nochmal simulieren',
-			autoSleep: 'Auto-Schlaf aktivieren'
+			autoSleep: 'Auto-Schlaf aktivieren',
+			powerLossResume: 'Stromausfall fortsetzen',
+			controlledPowerOff: 'Kontrolliertes Ausschalten',
+			captionPowerLoss: 'Job-Kontrolle bei Stromausfall'
 		},
 		jobData: {
 			caption: 'Gesammelte Daten',
@@ -546,7 +575,9 @@ export default {
 			runMesh: 'Gitterkompensation durchführen (G29)',
 			loadMesh: 'Gespeicherte Höhenkarte laden (G29 S1)',
 			axesNotHomed: 'Die folgende Achse ist nicht referenziert:|Die folgenden Achsen sind nicht referenziert:',
-			noAxes: 'Keine Achsen'
+			noAxes: 'Keine Achsen',
+			workSelect: 'Ausgewähltes Arbeitskoordinatensystem',
+			workSelectHint: 'Work Coordinate Selection'
 		},
 		settingsAbout: {
 			caption: 'Über',
@@ -597,7 +628,7 @@ export default {
 			caption: 'Maschinenspezifisch',
 			revertDWC: 'Zu DWC1 zurückkehren',
 			babystepAmount: 'Schrittgröße für Babystepping ({0})',
-			moveFeedrate: 'Vorschubrate für Bewegungen ({0})'
+			moveFeedrate: 'Vorschubrate für Bewegungen ({0})',
 		},
 		settingsNotifications: {
 			caption: 'Benachrichtigungen',
@@ -624,7 +655,8 @@ export default {
 			caption: 'Status',
 			mode: 'Modus: {0}',
 			toolPosition: 'Werkzeugposition',
-			machinePosition: 'Machinenposition',
+			machinePosition: 'Arbeitsposition',
+			nativePosition: 'Maschinenposition',
 			extruders: 'Extruder',
 			extruderDrive: 'Motor {0}',
 			speeds: 'Geschwindigkeiten',
@@ -638,6 +670,48 @@ export default {
 			fanRPM: 'Lüfter-RPM',
 			probe: 'Z-Probe|Z-Probes',
 			noStatus: 'Kein Status'
+		},
+		positionPanel: {
+			caption: 'Position & Geschwindigkeit',
+			mode: 'Modus: {0}',
+			toolPosition: 'Werkzeugposition',
+			machinePosition: 'Arbeitsposition',
+			nativePosition: 'Maschinenposition',
+			extruders: 'Extruder',
+			extruderDrive: 'Motor {0}',
+			speeds: 'Geschwindigkeiten',
+			requestedSpeed: 'Angeforderte Geschwindigkeit',
+			topSpeed: 'Maximale Geschwindigkeit',
+			sensors: 'Sensoren',
+			mcuTemp: 'MCU-Temperatur',
+			mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
+			vIn: 'Vin',
+			vInTitle: 'Minimum: {0}, Maximum {1}',
+			fanRPM: 'Lüfter-RPM',
+			probe: 'Z-Probe|Z-Probes',
+			noStatus: 'Kein Status'
+		},
+		sensor: {
+			caption: 'Sensoren',
+			mode: 'Modus: {0}',
+			toolPosition: 'Werkzeugposition',
+			machinePosition: 'Machinenposition',
+			extruders: 'Extruder',
+			extruderDrive: 'Motor {0}',
+			speeds: 'Geschwindigkeiten',
+			requestedSpeed: 'Angeforderte Geschwindigkeit',
+			topSpeed: 'Maximale Geschwindigkeit',
+			sensors: 'Sensoren',
+			mcuTemp: 'MCU-Temperatur',
+			mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
+			vIn: 'Vin',
+			vInTitle: 'Minimum: {0}, Maximum {1}',
+			fanRPM: 'Lüfter-RPM',
+			probe: 'Z-Probe|Z-Probes',
+			noStatus: 'Kein Status',
+			endstopStatus: 'Endstopp Status',
+			endstopTriggered: 'Ausgelöst',
+			endstopNotTriggered: 'Nicht Ausgelöst'
 		},
 		tools: {
 			caption: 'Werkzeuge',

@@ -2,10 +2,13 @@
 	<div class="component mb-0">
 		<v-layout column>
 			<v-flex>
-				<v-layout row wrap>
-					{{ printStatus }}
-					<v-spacer></v-spacer>
-					<span>{{ printDetails }}</span>
+				<v-layout row wrap justify-space-between>
+					
+					<span>{{ printStatus }}</span>
+					
+					
+					<span v-if="state.isPrinting">{{ $t('jobProgress.timeRemaining',[$displayTime(this.job.timesLeft.file)]) }}</span>
+					
 				</v-layout>
 			</v-flex>
 
@@ -70,7 +73,7 @@ export default {
 		},
 		printFile() {
 			return this.job.file.fileName ? extractFileName(this.job.file.fileName) : undefined;
-		}
+		},
 	}
 }
 </script>

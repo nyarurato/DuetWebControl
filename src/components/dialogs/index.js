@@ -13,6 +13,8 @@ import MessageBoxDialog from './MessageBoxDialog.vue'
 import NewFileDialog from './NewFileDialog.vue'
 import NewDirectoryDialog from './NewDirectoryDialog.vue'
 import ResetHeaterFaultDialog from './ResetHeaterFaultDialog.vue'
+import ControlledPowerOffDialog from './ControlledPowerOffDialog.vue'
+import ConfirmedPowerOffDialog from './ConfirmedPowerOffDialog.vue'
 
 Vue.component('confirm-dialog', ConfirmDialog)
 Vue.component('connect-dialog', ConnectDialog)
@@ -25,6 +27,8 @@ Vue.component('messagebox-dialog', MessageBoxDialog)
 Vue.component('new-file-dialog', NewFileDialog)
 Vue.component('new-directory-dialog', NewDirectoryDialog)
 Vue.component('reset-heater-fault-dialog', ResetHeaterFaultDialog)
+Vue.component('controlled-power-off-dialog', ControlledPowerOffDialog)
+Vue.component('confirmed-power-off-dialog', ConfirmedPowerOffDialog)
 
 export default {
 	ConfirmDialog,
@@ -37,5 +41,7 @@ export default {
 	MessageBoxDialog,
 	NewDirectoryDialog,
 	NewFileDialog,
-	ResetHeaterFaultDialog
+	ResetHeaterFaultDialog,
+	ControlledPowerOffDialog,
+	ConfirmedPowerOffDialog
 }

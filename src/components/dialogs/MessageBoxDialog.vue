@@ -1,7 +1,7 @@
 <template>
 	<v-dialog v-model="shown" :persistent="persistent">
 		<v-card>
-			<v-card-title>
+			<v-card-title class="justify-center">
 				<center class="headline">{{ messageBox.title }}</center>
 			</v-card-title>
 

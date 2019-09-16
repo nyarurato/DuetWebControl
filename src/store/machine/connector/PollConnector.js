@@ -279,11 +279,8 @@ export default class PollConnector extends BaseConnector {
 			move: {
 				axes: response.data.coords.xyz.map((machinePosition, drive) => ({
 					homed: !!response.data.coords.axesHomed[drive],
+					nativePosition: response.data.coords.machine[drive],
 					machinePosition
-				})),
-				axes: response.data.coords.machine.map((nativePosition, drive) => ({
-					homed: !!response.data.coords.axesHomed[drive],
-					nativePosition
 				})),
 				babystepZ: response.data.params.babystep,
 				currentMove: {
@@ -297,7 +294,8 @@ export default class PollConnector extends BaseConnector {
 					drives: [response.data.coords.xyz.length + index],
 					factor: factor / 100
 				})),
-				speedFactor: response.data.params.speedFactor / 100
+				speedFactor: response.data.params.speedFactor / 100,
+				currentWorkplace: response.data.coords.wpl
 			},
 			scanner: (response.data.scanner) ? {
 				progress: response.data.scanner.progress,

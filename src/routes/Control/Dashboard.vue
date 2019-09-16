@@ -6,26 +6,14 @@
 
 		<v-flex>
 			<v-layout row wrap full-height>
-				<v-flex order-sm2 order-md1 md3 xl2>
-					<v-layout row wrap align-center>
-						<v-flex xs7 sm6 md12>
+				<v-flex xs12 sm12 md4 lg4 xl4>
 							<job-control-panel></job-control-panel>
-						</v-flex>
-					</v-layout>
 				</v-flex>
-				<v-flex order-sm1 order-md2 md6 xl7 d-flex>
-					<v-layout column>
-						<v-flex xs5 sm6 md12>
+				<v-flex xs12 sm6 md5 lg5 xl5>
 							<babystepping-panel></babystepping-panel>
-						</v-flex>
-					</v-layout>
 				</v-flex>
-				<v-flex order-sm3 order-md3 md3 xl3>
-					<v-layout column>
-						<v-flex>
+				<v-flex xs12 sm6 md3 lg3 xl3>
 							<speed-factor-panel></speed-factor-panel>
-						</v-flex>
-					</v-layout>
 				</v-flex>
 			</v-layout>
 		</v-flex>
