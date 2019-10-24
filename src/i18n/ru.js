@@ -34,6 +34,16 @@
 			title: 'Home the {0} axis (G28 {0})',
 			titleAll: 'Home all axes (G28)'
 		},
+		work: {
+			caption: 'Установлен {0}',
+			captionAll: 'Установить работу XYZ',
+			title: 'Установить работу {0} ось',
+			titleAll: 'Установить работу {0} XYZ'
+		},
+		workGoto: {
+			captionAll: 'Идти на работу XYZ нуль',
+			titleAll: 'Идти на работу XYZ нуль'
+		},
 		newDirectory: {
 			caption: 'Новая папка'
 		},
@@ -189,6 +199,32 @@
 			title: 'Установить обновления?',
 			prompt: 'Вы загрузили по крайней мере одно обновление прошивки. Хотели бы вы установить их сейчас?'
 		},
+		powerLossConfirm: {
+			title: 'Возобновить от потери мощности?',
+			prompt: 'Вы уверены, что хотите возобновить работу после потери питания?'
+		},
+		powerLossSpindleConfirm: {
+			title: 'Маршрутизатор / шпиндель включен?',
+			prompt: 'Пожалуйста, подтвердите, что фрезер / шпиндель повернуты и на правильных оборотах.'
+		},
+		controlledPowerOffDialog: {
+			message: 'Пожалуйста, подождите, машина Приостановка',
+		},
+		confirmPowerOffDialog: {
+			message: 'Теперь машина может быть выключена.'
+		},
+		confirmTouchProbeReset: {
+			title: 'Возврат к значениям по умолчанию',
+			prompt: 'Вы уверены, что хотите вернуть настройки сенсорного датчика к значениям по умолчанию?'
+		},
+		confirmTouchProbe: {
+			title: 'бегать потрогать зонд последовательность',
+			prompt: 'Убедитесь, что концевая мельница находится над отверстием Start Here с прикрепленным зажимом потрогать зонд.'
+		},
+		touchProbeSuccess: {
+			title: 'успех',
+			prompt: 'Зонд завершен. Пожалуйста, удалите зонд.'
+		},
 		inputRequired: 'Введите значение',
 		numberRequired: 'Введите правильный номер'
 	},
@@ -238,6 +274,7 @@
 	},
 	generic: {
 		ok: 'OK',
+		confirm: 'подтвердить',
 		cancel: 'Отмена',
 		yes: 'Да',
 		no: 'Нет',
@@ -298,7 +335,8 @@
 		noJob: 'Нет запущенного задания.',
 		layer: 'Слой {0} из {1}',
 		filament: 'Использовано филамента: {0}',
-		filamentRemaining: '{0} осталось'
+		filamentRemaining: '{0} осталось',
+		timeRemaining: 'Оставшееся время: {0}'
 	},
 	list: {
 		baseFileList: {
@@ -511,7 +549,10 @@
 			repeatJob: 'Запустить снова',
 			repeatPrint: 'Печатать снова',
 			repeatSimulation: 'Симулировать снова',
-			autoSleep: 'Включить авто сон'
+			autoSleep: 'Включить конечный G-код',
+			powerLossResume: 'Сила потеря резюме',
+			controlledPowerOff: 'Контролируемое отключение',
+			captionPowerLoss: 'Контроль потери мощности'
 		},
 		jobData: {
 			caption: 'Собранные данные',
@@ -547,11 +588,14 @@
 			runMesh: 'Замерить сетку стола (G29)',
 			loadMesh: 'Загрузить карту высот с SD карты (G29 S1)',
 			axesNotHomed: 'Оси не в нулевом положении:',
-			noAxes: 'Нет осей'
+			noAxes: 'Нет осей',
+			workSelect: 'Выбранная система координат работы',
+			workSelectHint: 'Выбор рабочих координат'
 		},
 		settingsAbout: {
 			caption: 'О системе',
-			developedBy: 'Веб интерфейс разработан',
+			developedBy: 'Оригинальный веб-интерфейс Duet, разработанный',
+			modifiedBy: 'Модифицировано в WorkBee',
 			for: 'для',
 			licensedUnder: 'Лицензировано на условиях'
 		},
@@ -618,6 +662,25 @@
 			flipY: 'Переворот по Y',
 			flipBoth: 'Перевернуть по обоим'
 		},
+		settingsTouchProbe: {
+			caption: 'Настройки сенсорного зонда',
+			touchProbeEnableCaption: 'Включить сенсорный зонд',
+			touchProbeEndstopNumberCaption: 'Конечный номер',
+			touchProbeFeedRateCaption: 'Скорость подачи (mm/min)',
+			touchProbeXDimensionCaption: 'X измерение (mm)',
+			touchProbeYDimensionCaption: 'Y измерение (mm)',
+			touchProbeZDimensionCaption: 'Z измерение (mm)',
+			touchProbeXOffsetCaption: 'X-Ось офсет (mm)',
+			touchProbeYOffsetCaption: 'Y-Ось офсет (mm)',
+			touchProbeZOffsetCaption: 'Z-Ось офсет (mm)',
+			touchProbeRevert: 'Возврат к значениям по умолчанию',
+			touchProbeTriggerCaption: 'Уровень срабатывания сенсорного датчика',
+			touchProbeActiveHigh: 'Активный высокий',
+			touchProbeActiveLow: 'Активный Низкий',
+			touchProbeType: 'Тип сенсорного датчика',
+			touchProbeXYZ: 'XYZ Сенсорный зонд',
+			touchProbeZ: 'Z Сенсорный зонд',
+		},
 		speedFactor: {
 			caption: 'Контроль скорости'
 		},
@@ -639,6 +702,48 @@
 			fanRPM: 'Скорость вентилятора',
 			probe: 'Z-датчик',
 			noStatus: 'Нет статуса'
+		},
+		positionPanel: {
+			caption: 'Позиции и скорости',
+			mode: 'Режим: {0}',
+			toolPosition: 'Положение инструмента',
+			machinePosition: 'Занимаемая должность',
+			nativePosition: 'Положение машины',
+			extruders: 'Приводы экструдеров',
+			extruderDrive: 'Водить машину {0}',
+			speeds: 'Скорости',
+			requestedSpeed: 'Запрошенная скорость',
+			topSpeed: 'Максимальная скорость',
+			sensors: 'датчиков',
+			mcuTemp: 'Температура MCU',
+			mcuTempTitle: 'минимальный: {0}, максимальная: {1}',
+			vIn: 'Vin',
+			vInTitle: 'минимальный: {0}, максимальная: {1}',
+			fanRPM: 'Вентилятор RPM',
+			probe: 'Z-зонд|Z-зонды',
+			noStatus: 'Нет статуса'
+		},
+		sensor: {
+			caption: 'Позиции и скорости',
+			mode: 'Режим: {0}',
+			toolPosition: 'Положение инструмента',
+			machinePosition: 'Занимаемая должность',
+			extruders: 'Приводы экструдеров',
+			extruderDrive: 'Водить машину {0}',
+			speeds: 'Скорости',
+			requestedSpeed: 'Запрошенная скорость',
+			topSpeed: 'Максимальная скорость',
+			sensors: 'датчиков',
+			mcuTemp: 'Температура MCU',
+			mcuTempTitle: 'минимальный: {0}, максимальная: {1}',
+			vIn: 'Vin',
+			vInTitle: 'минимальный: {0}, максимальная: {1}',
+			fanRPM: 'Вентилятор RPM',
+			probe: 'Z-зонд|Z-зонды',
+			noStatus: 'Нет статуса',
+			endstopStatus: 'Конечный статус',
+			endstopTriggered: 'Срабатывает',
+			endstopNotTriggered: 'Не срабатывает'
 		},
 		tools: {
 			caption: 'Контроль нагрева',
@@ -664,6 +769,24 @@
 				noItems: 'Нет доп. нагревателей'
 			},
 			noTools: 'Нет устройств'
+		},
+		touchProbePanel: {
+			caption: 'Зонд Z Ось',
+			endmillDiameter: 'EДиаметр мельницы (mm)',
+			probeAxisCaption: 'Зонд Индивидуальная Ось',
+			probeXTitle: 'Зонд X Ось',
+			probeXCaption: 'X',
+			probeYTitle: 'Зонд Y Ось',
+			probeYCaption: 'Y',
+			probeZTitle: 'Зонд Z Ось',
+			probeZCaption: 'Z',
+			probeCornerTitle: 'Угол зонда',
+			probeCornerCaption: 'Угол зонда',
+			probeLocation: 'Расположение зонда',
+			probeLocationFrontLeft: 'Передний левый угол',
+			probeLocationFrontRight: 'Передний правый угол',
+			probeLocationBackLeft: 'Задний левый угол',
+			probeLocationBackRight: 'Задний правый угол',
 		},
 		webcam: {
 			caption: 'Обзор камеры',

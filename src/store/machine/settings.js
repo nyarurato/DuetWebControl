@@ -4,7 +4,7 @@ import { setLocalSetting, getLocalSetting, removeLocalSetting } from '../../util
 import patch from '../../utils/patch.js'
 import Path from '../../utils/path.js'
 
-export default function(hostname) {
+export default function (hostname) {
 	return {
 		namespaced: true,
 		state: {
@@ -43,13 +43,30 @@ export default function(hostname) {
 				},
 				chamber: [90, 80, 70, 60, 50, 40, 0]
 			},
-			spindleRPM: [10000, 75000, 5000, 2500, 1000, 0]
+			spindleRPM: [10000, 75000, 5000, 2500, 1000, 0],
+			touchProbe: {
+				touchProbeEnable: false,
+				touchProbeEndstopDriveNumber: 3,
+				touchProbeEndstopAxis: 'EO', 
+				touchProbeFeedrate: 500,
+				touchProbeXDimension: 60,
+				touchProbeYDimension: 60,
+				touchProbeZDimension: 10,
+				touchProbeXOffset: 10,
+				touchProbeYOffset: 10,
+				touchProbeZOffset: 5,
+				touchProbeTriggerType: 0,
+				touchProbeEndmillDiameter: 6.35,
+				touchProbeLocation: 'FL',
+				touchProbeType: 0,
+			},
 		},
 		getters: {
-			moveSteps: state => function(axis) {
+			moveSteps: state => function (axis) {
 				return state.moveSteps.hasOwnProperty(axis) ? state.moveSteps[axis] : state.moveSteps.default;
 			},
-			numMoveSteps: state => state.moveSteps.default.length
+			numMoveSteps: state => state.moveSteps.default.length,
+			touchProbeType: state => state.touchProbe.touchProbeType,
 		},
 		actions: {
 			async save({ state, rootState, dispatch }) {
@@ -129,7 +146,23 @@ export default function(hostname) {
 					state.displayedFans = state.displayedFans.filter(item => item !== fan);
 				}
 			},
-			update: (state, payload) => patch(state, payload, true)
+			resetTouchProbe(state) {
+				state.touchProbe = {
+					...state.touchProbe, 
+					touchProbeEndstopDriveNumber: 3, 
+					touchProbeEndstopAxis: 'EO', 
+					touchProbeFeedrate: 500,
+					touchProbeXDimension: 60,
+					touchProbeYDimension: 60,
+					touchProbeZDimension: 10,
+					touchProbeXOffset: 10,
+					touchProbeYOffset: 10,
+					touchProbeZOffset: 5,
+					touchProbeTriggerType: 0,
+					touchProbeType: 0,
+				}
+			},
+			update: (state, payload) => patch(state, payload, true),
 		}
 	}
 }

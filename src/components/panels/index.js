@@ -29,6 +29,8 @@ import ToolsPanel from './ToolsPanel.vue'
 import WebcamPanel from './WebcamPanel.vue'
 import PositionPanel from './PositionPanel.vue'
 import SensorPanel from './SensorPanel.vue'
+import SettingsTouchProbePanel from './SettingsTouchProbePanel.vue'
+import TouchProbePanel from './TouchProbePanel.vue'
 
 Vue.component('atx-panel', ATXPanel)
 Vue.component('babystepping-panel', BabysteppingPanel)
@@ -57,6 +59,9 @@ Vue.component('tools-panel', ToolsPanel)
 Vue.component('webcam-panel', WebcamPanel)
 Vue.component('position-panel', PositionPanel)
 Vue.component('sensor-panel', SensorPanel)
+Vue.component('settings-touch-probe-panel', SettingsTouchProbePanel)
+Vue.component('touch-probe-panel', TouchProbePanel)
+
 
 export default {
 	ATXPanel,
@@ -86,5 +91,7 @@ export default {
 	WebcamPanel,
 	PositionPanel,
 	SensorPanel,
+	SettingsTouchProbePanel,
+	TouchProbePanel,
 	
 }

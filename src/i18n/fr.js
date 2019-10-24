@@ -214,6 +214,18 @@ export default {
 		confirmPowerOffDialog: {
 			message: 'la machine peut maintenant être éteinte.'
 		},
+		confirmTouchProbeReset: {
+			title: 'Revenir aux valeurs par défaut',
+			prompt: 'Voulez-vous vraiment rétablir les valeurs par défaut des paramètres de la sonde tactile?'
+		},
+		confirmTouchProbe: {
+			title: 'Exécuter la séquence de sonde tactile',
+			prompt: 'Assurez-vous que la fraise est au-dessus du trou Démarrer ici avec le clip de la sonde tactile fixé.'
+		},
+		touchProbeSuccess: {
+			title: 'Succès',
+			prompt: 'Sonde complète. Sil vous plaît enlever la sonde.'
+		},
 		inputRequired: 'Merci d\'entrer une nouvelle valeur',
 		numberRequired: 'Merci d\'entrer un nombre valide'
 	},
@@ -538,7 +550,7 @@ export default {
 			repeatJob: 'Recommencer',
 			repeatPrint: 'Réimprimer',
 			repeatSimulation: 'Simuler à Nouveau',
-			autoSleep: 'Activer Veille Automatique',
+			autoSleep: 'Activer la fin du G-Code',
 			powerLossResume: 'Résumé de perte de puissance',
 			controlledPowerOff: 'Mise hors tension contrôlée',
 			captionPowerLoss: 'Contrôle de perte de puissance'
@@ -583,7 +595,8 @@ export default {
 		},
 		settingsAbout: {
 			caption: 'À propos',
-			developedBy: 'Interface web dévelopée par',
+			developedBy: 'Interface Web originale Duet développée par',
+			modifiedBy: 'Modifié en contrôle WorkBee par',
 			for: 'pour',
 			licensedUnder: 'Sous licence selon les termes de la'
 		},
@@ -649,6 +662,25 @@ export default {
 			flipX: 'Retourner X',
 			flipY: 'Retourner Y',
 			flipBoth: 'Retourner les deux'
+		},
+		settingsTouchProbe: {
+			caption: 'Paramètres de la sonde tactile',
+			touchProbeEnableCaption: 'Activer la sonde tactile',
+			touchProbeEndstopNumberCaption: 'Numéro de fin de course',
+			touchProbeFeedRateCaption: 'Avance (mm/min)',
+			touchProbeXDimensionCaption: 'X Dimension (mm)',
+			touchProbeYDimensionCaption: 'Y Dimension (mm)',
+			touchProbeZDimensionCaption: 'Z Dimension (mm)',
+			touchProbeXOffsetCaption: 'X-Axe Décalage (mm)',
+			touchProbeYOffsetCaption: 'Y-Axe Décalage (mm)',
+			touchProbeZOffsetCaption: 'Z-Axe Décalage (mm)',
+			touchProbeRevert: 'Revenir aux valeurs par défaut',
+			touchProbeTriggerCaption: 'Niveau de déclenchement de la sonde tactile',
+			touchProbeActiveHigh: 'Actif haut',
+			touchProbeActiveLow: 'Actif bas',
+			touchProbeType: 'Type de sonde tactile',
+			touchProbeXYZ: 'Sonde tactile XYZ',
+			touchProbeZ: 'Sonde tactile Z',
 		},
 		speedFactor: {
 			caption: 'Facteur de Vitesse'
@@ -739,6 +771,24 @@ export default {
 				noItems: 'Pas de Chauffage supplémentaire'
 			},
 			noTools: 'Pas d\'Outils'
+		},
+		touchProbePanel: {
+			caption: 'Contrôle de la sonde tactile',
+			endmillDiameter: 'Diamètre de fraise (mm)',
+			probeAxisCaption: 'Sonde Individuelle Axe',
+			probeXTitle: 'Sonde X Axe',
+			probeXCaption: 'X',
+			probeYTitle: 'Sonde Y Axe',
+			probeYCaption: 'Y',
+			probeZTitle: 'Sonde Z Axe',
+			probeZCaption: 'Z',
+			probeCornerTitle: 'Coin de la sonde',
+			probeCornerCaption: 'Coin de la sonde',
+			probeLocation: 'Localisation de la sonde',
+			probeLocationFrontLeft: 'Coin avant gauche',
+			probeLocationFrontRight: 'Coin avant droit',
+			probeLocationBackLeft: 'Coin arrière gauche',
+			probeLocationBackRight: 'Coin arrière droit',
 		},
 		webcam: {
 			caption: 'Surveillance Webcam',

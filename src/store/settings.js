@@ -30,6 +30,7 @@ export default {
 			flip: 'none',
 			
 		},
+		
 		workCoordinateSystem: '1',
 	},
 	mutations: {

@@ -213,6 +213,18 @@ export default {
 		confirmPowerOffDialog: {
 			message: 'Die Maschine kann jetzt ausgeschaltet werden.'
 		},
+		confirmTouchProbeReset: {
+			title: 'Standardeinstellungen wiederherstellen',
+			prompt: 'Möchten Sie die Touch Probe-Einstellungen wirklich auf die Standardwerte zurücksetzen?'
+		},
+		confirmTouchProbe: {
+			title: 'Führen Sie die Touch Probe-Sequenz aus',
+			prompt: 'Vergewissern Sie sich, dass sich das Schaftfräser über dem Loch Start Here befindet, an dem der Touch Probe-Clip angebracht ist.'
+		},
+		touchProbeSuccess: {
+			title: 'Erfolg',
+			prompt: 'Probe abgeschlossen. Bitte entfernen Sie die Sonde.'
+		},
 		inputRequired: 'Bitte Wert eingeben',
 		numberRequired: 'Bitte gültige Zahl eingeben'
 	},
@@ -537,7 +549,7 @@ export default {
 			repeatJob: 'Nochmal starten',
 			repeatPrint: 'Nochmal drucken',
 			repeatSimulation: 'Nochmal simulieren',
-			autoSleep: 'Auto-Schlaf aktivieren',
+			autoSleep: 'G-Code beenden aktivieren',
 			powerLossResume: 'Stromausfall fortsetzen',
 			controlledPowerOff: 'Kontrolliertes Ausschalten',
 			captionPowerLoss: 'Job-Kontrolle bei Stromausfall'
@@ -582,7 +594,8 @@ export default {
 		},
 		settingsAbout: {
 			caption: 'Über',
-			developedBy: 'Weboberfläche entwickelt von',
+			developedBy: 'Original Duet Web Interface entwickelt von',
+			modifiedBy: 'Geändert zu WorkBee Control von',
 			for: 'für',
 			licensedUnder: 'Lizensiert unter den Bedingungen der'
 		},
@@ -648,6 +661,25 @@ export default {
 			flipX: 'X spiegeln',
 			flipY: 'Y spiegeln',
 			flipBoth: 'Beide spiegeln'
+		},
+		settingsTouchProbe: {
+			caption: 'Berühren Sie Probe Settings',
+			touchProbeEnableCaption: 'Touch Probe aktivieren',
+			touchProbeEndstopNumberCaption: 'Endstoppnummer',
+			touchProbeFeedRateCaption: 'Vorschubgeschwindigkeit (mm/min)',
+			touchProbeXDimensionCaption: 'X Abmessungen (mm)',
+			touchProbeYDimensionCaption: 'Y Abmessungen (mm)',
+			touchProbeZDimensionCaption: 'Z Abmessungen (mm)',
+			touchProbeXOffsetCaption: 'X-Achse Offset (mm)',
+			touchProbeYOffsetCaption: 'Y-Achse Offset (mm)',
+			touchProbeZOffsetCaption: 'Z-Achse Offset (mm)',
+			touchProbeRevert: 'Auf Standardeinstellungen zurücksetzen',
+			touchProbeTriggerCaption: 'Berühren Sie Probe Trigger Level',
+			touchProbeActiveHigh: 'Aktiv hoch',
+			touchProbeActiveLow: 'Aktiv niedrig',
+			touchProbeType: 'Touch Probe Art',
+			touchProbeXYZ: 'XYZ Touch Probe',
+			touchProbeZ: 'Z Touch Probe',
 		},
 		speedFactor: {
 			caption: 'Geschwindigkeitsfaktor'
@@ -738,6 +770,24 @@ export default {
 				noItems: 'Keine zusätzlichen Heizer'
 			},
 			noTools: 'Keine Werkzeuge'
+		},
+		touchProbePanel: {
+			caption: 'Berühren Sie die Sondensteuerung',
+			endmillDiameter: 'Schaftfräserdurchmesser (mm)',
+			probeAxisCaption: 'Einzelne Achse tasten',
+			probeXTitle: 'Probe X-Achse',
+			probeXCaption: 'X',
+			probeYTitle: 'Sonden-Y-Achse',
+			probeYCaption: 'Y',
+			probeZTitle: 'Sonden-Z-Achse',
+			probeZCaption: 'Z',
+			probeCornerTitle: 'Sondenecke',
+			probeCornerCaption: 'Sondenecke',
+			probeLocation: 'Ort der Sonde',
+			probeLocationFrontLeft: 'Vordere linke Ecke',
+			probeLocationFrontRight: 'Vordere rechte Ecke',
+			probeLocationBackLeft: 'Hintere linke Ecke',
+			probeLocationBackRight: 'Hintere rechte Ecke',
 		},
 		webcam: {
 			caption: 'Webcamüberwachung',

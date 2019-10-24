@@ -126,12 +126,6 @@ a:not(:hover) {
 
 			</v-layout>
 		</v-card-text>
-
-		<v-card-text class="pa-0" v-show="!sensorsPresent && !(move.axes.length + move.extruders.length)">
-			<v-alert :value="true" type="info">
-				{{ $t('panel.sensor.nosensor') }}
-			</v-alert>
-		</v-card-text>
 	</v-card>
 </template>
 

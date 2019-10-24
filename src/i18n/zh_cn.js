@@ -1,5 +1,3 @@
-// 注释：Version 2.0.0-RC7
-// 注释：https://github.com/chrishamm/DuetWebControl/tree/2.0.0-RC7/src/i18n
 export default {
 	language: '简体中文',
 	'$vuetify': {
@@ -35,6 +33,16 @@ export default {
 			captionAll: '全部归位',
 			title: '归位{0}轴(G28 {0})',
 			titleAll: '归位所有轴(G28)'
+		},
+		work: {
+			caption: '组 {0}',
+			captionAll: '设定工作 XYZ',
+			title: '设定工作 {0} 轴',
+			titleAll: '设定工作 {0} XYZ'
+		},
+		workGoto: {
+			captionAll: 'GoTo Work XYZ Zero',
+			titleAll: 'GoTo the work XYZ zero'
 		},
 		newDirectory: {
 			caption: '新建目录'
@@ -176,7 +184,7 @@ export default {
 		},
 		resetHeaterFault: {
 			title: '重置加热器故障',
-		prompt: '加热器{0}发生加热器故障。强烈建议立即关闭机器并在继续之前检查接线。 如果您确认这不是硬件问题，您可以重置加热器故障，【自担风险】！请注意这是【不推荐】的，可能会导致进一步的问题。 你想怎样处理？',
+			prompt: '加热器{0}发生加热器故障。强烈建议立即关闭机器并在继续之前检查接线。 如果您确认这不是硬件问题，您可以重置加热器故障，【自担风险】！请注意这是【不推荐】的，可能会导致进一步的问题。 你想怎样处理？',
 			resetFault: '重置故障'
 		},
 		runMacro: {
@@ -190,6 +198,32 @@ export default {
 		update: {
 			title: '安装更新？',
 			prompt: '您已上传至少一个固件更新。 你想现在安装吗？'
+		},
+		powerLossConfirm: {
+			title: '恢复掉电?',
+			prompt: '您确定要从功率损耗中恢复工作吗?'
+		},
+		powerLossSpindleConfirm: {
+			title: '路由器/主轴开启?',
+			prompt: '请确认路由器/主轴已转动且转速正确.'
+		},
+		controlledPowerOffDialog: {
+			message: '请稍候，机器暂停',
+		},
+		confirmPowerOffDialog: {
+			message: '现在可以关闭机器.'
+		},
+		confirmTouchProbeReset: {
+			title: '恢复为默认值',
+			prompt: '您确定要将测头设置恢复为默认值吗?'
+		},
+		confirmTouchProbe: {
+			title: '运行测头探测序列',
+			prompt: '确保端铣刀位于附带“接触式探针”夹的“从这里开始”孔上方.'
+		},
+		touchProbeSuccess: {
+			title: '成功',
+			prompt: '探测完成。请取下探针.'
 		},
 		inputRequired: '请输入一个值',
 		numberRequired: '请输入有效的数值'
@@ -240,6 +274,7 @@ export default {
 	},
 	generic: {
 		ok: '确定',
+		confirm: '确认',
 		cancel: '取消',
 		yes: '是',
 		no: '否',
@@ -300,7 +335,8 @@ export default {
 		noJob: '没有任务在运行.',
 		layer: '第{0}层，共{1}层',
 		filament: '细丝用量 {0}',
-		filamentRemaining: '{0}剩余'
+		filamentRemaining: '{0}剩余',
+		timeRemaining: '预计剩余时间: {0}'
 	},
 	list: {
 		baseFileList: {
@@ -512,7 +548,10 @@ export default {
 			repeatJob: '重新开始',
 			repeatPrint: '重新打印',
 			repeatSimulation: '重新模拟',
-			autoSleep: '启用自动睡眠'
+			autoSleep: '启用最终G代码',
+			powerLossResume: '功率损耗恢复',
+			controlledPowerOff: '控制电源关闭',
+			captionPowerLoss: '断电作业控制'
 		},
 		jobData: {
 			caption: '采集数据',
@@ -548,11 +587,14 @@ export default {
 			runMesh: '运行网格补偿(G29)',
 			loadMesh: '从SD卡加载已保存的高度图(G29 S1)',
 			axesNotHomed: '以下轴未归位:|以下轴未归位',
-			noAxes: '没有轴'
+			noAxes: '没有轴',
+			workSelect: '选定的工作坐标系',
+			workSelectHint: '工作坐标选择'
 		},
 		settingsAbout: {
 			caption: '关于',
-			developedBy: 'Web界面开发：',
+			developedBy: '由开发的原始的Duet Web界面',
+			modifiedBy: '修改为WorkBee控制者',
 			for: ' 适用于：',
 			licensedUnder: '中文翻译：宁甲尊， 许可条款：'
 		},
@@ -619,6 +661,25 @@ export default {
 			flipY: '翻转Y',
 			flipBoth: '翻转两者'
 		},
+		settingsTouchProbe: {
+			caption: '测头设置',
+			touchProbeEnableCaption: '启用测头',
+			touchProbeEndstopNumberCaption: 'Endstop Number',
+			touchProbeFeedRateCaption: '终点编号(mm/min)',
+			touchProbeXDimensionCaption: 'X 尺寸 (mm)',
+			touchProbeYDimensionCaption: 'Y 尺寸 (mm)',
+			touchProbeZDimensionCaption: 'Z 尺寸 (mm)',
+			touchProbeXOffsetCaption: 'X-轴偏移 (mm)',
+			touchProbeYOffsetCaption: 'Y-轴偏移 (mm)',
+			touchProbeZOffsetCaption: 'Z-轴偏移 (mm)',
+			touchProbeRevert: '恢复为默认值',
+			touchProbeTriggerCaption: '测头触发电平',
+			touchProbeActiveHigh: '活跃高',
+			touchProbeActiveLow: '主动低',
+			touchProbeType: '测头类型',
+			touchProbeXYZ: 'XYZ 测头',
+			touchProbeZ: 'Z 测头',
+		},
 		speedFactor: {
 			caption: '速度系数'
 		},
@@ -640,6 +701,48 @@ export default {
 			fanRPM: '风扇转速RPM',
 			probe: 'Z轴探针|Z轴探针',
 			noStatus: '没有状态'
+		},
+		positionPanel: {
+			caption: '工作岗位',
+			mode: '模式: {0}',
+			toolPosition: '工具位置',
+			machinePosition: '工作岗位',
+			nativePosition: '机器位置',
+			extruders: '挤出机驱动器',
+			extruderDrive: '驾驶 {0}',
+			speeds: '速度',
+			requestedSpeed: '要求速度',
+			topSpeed: '最高速度',
+			sensors: '感测器',
+			mcuTemp: 'MCU温度',
+			mcuTempTitle: '最低要求: {0}, 最大值: {1}',
+			vIn: 'Vin',
+			vInTitle: '最低要求: {0}, 最大值: {1}',
+			fanRPM: '风扇 RPM',
+			probe: 'Z-探针|Z-探针',
+			noStatus: '无状态'
+		},
+		sensor: {
+			caption: '工作岗位',
+			mode: '模式: {0}',
+			toolPosition: '工具位置',
+			machinePosition: '工作岗位',
+			extruders: '挤出机驱动器',
+			extruderDrive: '驾驶 {0}',
+			speeds: '速度',
+			requestedSpeed: '要求速度',
+			topSpeed: '最高速度',
+			sensors: '感测器',
+			mcuTemp: 'MCU温度',
+			mcuTempTitle: '最低要求: {0}, 最大值: {1}',
+			vIn: 'Vin',
+			vInTitle: '最低要求: {0}, 最大值: {1}',
+			fanRPM: '风扇 RPM',
+			probe: 'Z-探针|Z-探针',
+			noStatus: '无状态',
+			endstopStatus: '终点站状态',
+			endstopTriggered: '已触发',
+			endstopNotTriggered: '未触发'
 		},
 		tools: {
 			caption: '工具',
@@ -665,6 +768,24 @@ export default {
 				noItems: '没有额外加热器'
 			},
 			noTools: '没有工具'
+		},
+		touchProbePanel: {
+			caption: '测头控制',
+			endmillDiameter: '立铣刀直径 (mm)',
+			probeAxisCaption: '探测单轴',
+			probeXTitle: '探头X轴',
+			probeXCaption: 'X',
+			probeYTitle: '探头Y轴',
+			probeYCaption: 'Y',
+			probeZTitle: '测头Z轴',
+			probeZCaption: 'Z',
+			probeCornerTitle: '探针角',
+			probeCornerCaption: '探针角',
+			probeLocation: '探头位置',
+			probeLocationFrontLeft: '左前角',
+			probeLocationFrontRight: '右前角',
+			probeLocationBackLeft: '左后角',
+			probeLocationBackRight: '右后角',
 		},
 		webcam: {
 			caption: '网络摄像头监控',

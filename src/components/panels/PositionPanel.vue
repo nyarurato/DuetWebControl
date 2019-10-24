@@ -22,6 +22,20 @@ a:not(:hover) {
 .probe-span:not(:last-child) {
   margin-right: 8px;
 }
+.work-position-dark {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #ffffff;
+  margin-right: 4px;
+}
+.work-position-light {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #303030;
+  margin-right: 4px;
+}
 </style>
 
 <template>
@@ -44,7 +58,7 @@ a:not(:hover) {
     </v-card-title>
 
     <v-card-text
-      class="px-0 pt-0 pb-2 content text-xs-center"
+      class="px-0 pt-0 pb-2 content text-xs-center pl-2 pr-2"
       v-show="sensorsPresent || (move.axes.length + move.extruders.length)"
     >
       <!-- Positions -->
@@ -53,18 +67,18 @@ a:not(:hover) {
 
         <!-- Work Position -->
 
-        <v-flex v-show="move.axes.length">
+        <v-flex v-show="move.axes.length" :class="this.darkTheme ? 'work-position-dark' : 'work-position-light'">
           <v-layout row align-center>
             <v-flex tag="strong" class="category-header">
               {{ $t('panel.positionPanel.machinePosition') }}
             </v-flex>
 
-            <v-flex>
+            <v-flex >
               <v-layout row wrap>
-                <v-flex v-for="(axis, index) in move.axes" :key="index" grow class="equal-width">
+                <v-flex v-for="(axis, index) in move.axes" :key="index" grow class="equal-width" >
                   <v-layout column>
                     <v-flex v-if="axis.visible" tag="strong">{{ axis.letter }}</v-flex>
-                    <v-flex v-if="axis.visible" tag="span">{{ displayAxisPosition(axis, index) }}</v-flex>
+                    <v-flex v-if="axis.visible" tag="span" >{{ displayAxisPosition(axis, index) }}</v-flex>
                   </v-layout>
                 </v-flex>
               </v-layout>

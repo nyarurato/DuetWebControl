@@ -213,6 +213,18 @@ export default {
 		confirmPowerOffDialog: {
 			message: 'The machine can now be switched off.'
 		},
+		confirmTouchProbeReset: {
+			title: 'Revert to defaults',
+			prompt: 'Are you sure you want to revert touch probe settings to the default values?'
+		},
+		confirmTouchProbe: {
+			title: 'Run Touch Probe Sequence',
+			prompt: 'Insure the endmill is above the Start Here hole with the Touch Probe clip attached.'
+		},
+		touchProbeSuccess: {
+			title: 'Success',
+			prompt: 'Probe complete. Please remove probe.'
+		},
 		inputRequired: 'Please enter a value',
 		numberRequired: 'Please enter a valid number'
 	},
@@ -537,7 +549,7 @@ export default {
 			repeatJob: 'Start Again',
 			repeatPrint: 'Print Again',
 			repeatSimulation: 'Simulate Again',
-			autoSleep: 'Enable Auto-Sleep',
+			autoSleep: 'Enable End G-Code',
 			powerLossResume: 'Power Loss Resume',
 			controlledPowerOff: 'Controlled Power Off',
 			captionPowerLoss: 'Power Loss Job Control'
@@ -582,7 +594,8 @@ export default {
 		},
 		settingsAbout: {
 			caption: 'About',
-			developedBy: 'Web Interface developed by',
+			developedBy: 'Original Duet Web Interface developed by',
+			modifiedBy: 'Modified to WorkBee Control by',
 			for: 'for',
 			licensedUnder: 'Licensed under the terms of the'
 		},
@@ -649,6 +662,25 @@ export default {
 			flipY: 'Flip Y',
 			flipBoth: 'Flip both'
 		},
+		settingsTouchProbe: {
+			caption: 'Touch Probe Settings',
+			touchProbeEnableCaption: 'Enable Touch Probe',
+			touchProbeEndstopNumberCaption: 'Endstop Number',
+			touchProbeFeedRateCaption: 'Feedrate (mm/min)',
+			touchProbeXDimensionCaption: 'X Dimension (mm)',
+			touchProbeYDimensionCaption: 'Y Dimension (mm)',
+			touchProbeZDimensionCaption: 'Z Dimension (mm)',
+			touchProbeXOffsetCaption: 'X-Axis Offset (mm)',
+			touchProbeYOffsetCaption: 'Y-Axis Offset (mm)',
+			touchProbeZOffsetCaption: 'Z-Axis Offset (mm)',
+			touchProbeRevert: 'Revert to Defaults',
+			touchProbeTriggerCaption: 'Touch Probe Trigger Level',
+			touchProbeActiveHigh: 'Active High',
+			touchProbeActiveLow: 'Active Low',
+			touchProbeType: 'Touch Probe Type',
+			touchProbeXYZ: 'XYZ Touch Probe',
+			touchProbeZ: 'Z Touch Probe',
+		},
 		speedFactor: {
 			caption: 'Speed Factor'
 		},
@@ -673,31 +705,30 @@ export default {
 			noStatus: 'No Status'
 		},
 		positionPanel: {
-				caption: 'Positions & Speeds',
-				mode: 'Mode: {0}',
-				toolPosition: 'Tool Position',
-				machinePosition: 'Work Position',
-				nativePosition: 'Machine Position',
-				extruders: 'Extruder Drives',
-				extruderDrive: 'Drive {0}',
-				speeds: 'Speeds',
-				requestedSpeed: 'Requested Speed',
-				topSpeed: 'Top Speed',
-				sensors: 'Sensors',
-				mcuTemp: 'MCU Temperature',
-				mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
-				vIn: 'Vin',
-				vInTitle: 'Minimum: {0}, Maximum {1}',
-				fanRPM: 'Fan RPM',
-				probe: 'Z-Probe|Z-Probes',
-				noStatus: 'No Status'
+			caption: 'Positions & Speeds',
+			mode: 'Mode: {0}',
+			toolPosition: 'Tool Position',
+			machinePosition: 'Work Position',
+			nativePosition: 'Machine Position',
+			extruders: 'Extruder Drives',
+			extruderDrive: 'Drive {0}',
+			speeds: 'Speeds',
+			requestedSpeed: 'Requested Speed',
+			topSpeed: 'Top Speed',
+			sensors: 'Sensors',
+			mcuTemp: 'MCU Temperature',
+			mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
+			vIn: 'Vin',
+			vInTitle: 'Minimum: {0}, Maximum {1}',
+			fanRPM: 'Fan RPM',
+			probe: 'Z-Probe|Z-Probes',
+			noStatus: 'No Status'
 		},
 		sensor: {
 			caption: 'Sensors',
 			mode: 'Mode: {0}',
 			toolPosition: 'Tool Position',
 			machinePosition: 'Work Position',
-			nativePosition: 'Machine Position',
 			extruders: 'Extruder Drives',
 			extruderDrive: 'Drive {0}',
 			speeds: 'Speeds',
@@ -739,6 +770,24 @@ export default {
 				noItems: 'No Extra Heaters'
 			},
 			noTools: 'No Tools'
+		},
+		touchProbePanel: {
+			caption: 'Touch Probe Control',
+			endmillDiameter: 'Endmill Diameter (mm)',
+			probeAxisCaption: 'Probe Individual Axis',
+			probeXTitle: 'Probe X Axis',
+			probeXCaption: 'X',
+			probeYTitle: 'Probe Y Axis',
+			probeYCaption: 'Y',
+			probeZTitle: 'Probe Z Axis',
+			probeZCaption: 'Z',
+			probeCornerTitle: 'Probe Corner',
+			probeCornerCaption: 'Probe Corner',
+			probeLocation: 'Probe Location',
+			probeLocationFrontLeft: 'Front Left Corner',
+			probeLocationFrontRight: 'Front Right Corner',
+			probeLocationBackLeft: 'Back Left Corner',
+			probeLocationBackRight: 'Back Right Corner',
 		},
 		webcam: {
 			caption: 'Webcam Surveillance',

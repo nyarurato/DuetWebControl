@@ -8,6 +8,9 @@
 				<v-flex sm6 md12>
 					<settings-machine-panel></settings-machine-panel>
 				</v-flex>
+				<v-flex sm6 md12>
+					<settings-touch-probe-panel></settings-touch-probe-panel>
+				</v-flex>
 			</v-layout>
 		</v-flex>
 		<v-flex md7 lg8>

@@ -19,7 +19,7 @@
           {{ $t('panel.movement.caption') }}
         </v-flex>
         <v-flex lg2 md2 sm3 xs4>
-              <v-select :disabled="state.isPrinting" persistent-hint :hint="$t('panel.movement.workSelectHint')" single-line class="ma-0 pa-0" v-model="workSelect" :items="workItems"></v-select>
+              <v-select :disabled="state.isPrinting || uiFrozen" persistent-hint :hint="$t('panel.movement.workSelectHint')" single-line class="ma-0 pa-0" v-model="workSelect" :items="workItems"></v-select>
         </v-flex>
       </v-layout>
     </v-card-title>
@@ -46,7 +46,7 @@
                 <v-divider></v-divider>
               </template>
 
-              <v-list-tile @click="sendCode('G32')">
+              <!-- <v-list-tile @click="sendCode('G32')">
                 <v-icon class="mr-1">view_module</v-icon>
                 {{ $t(move.geometry.type === 'delta' ? 'panel.movement.runDelta' : 'panel.movement.runBed') }}
               </v-list-tile>
@@ -56,7 +56,7 @@
               >
                 <v-icon class="mr-1">clear</v-icon>
                 {{ $t('panel.movement.disableBedCompensation') }}
-              </v-list-tile>
+              </v-list-tile>-->
 
               <v-divider></v-divider>
 
@@ -97,7 +97,7 @@
               block
               :disabled="state.isPrinting"
               color="primary"
-              :code="`G10 P${move.currentWorkplace} L20 X0 Y0 Z0\nM500`"
+              :code="`G10 L20 X0 Y0 Z0\nM500`"
               :title="$t('button.work.titleAll',[move.currentWorkplace])"
             >{{ $t('button.work.captionAll') }}</code-btn>
           </v-flex>
@@ -125,7 +125,7 @@
                 color="primary"
                 :disabled="uiFrozen || state.isPrinting"
                 :title="$t('button.work.title', [axis.letter, move.currentWorkplace])"
-                :code="`G10 P${move.currentWorkplace} L20 ${axis.letter}0\nM500`"
+                :code="`G10 L20 ${axis.letter}0\nM500`"
                 class="mr-0"
               >{{ $t('button.work.caption', [axis.letter]) }}</code-btn>
             </v-flex>
@@ -190,7 +190,7 @@
                       <v-divider></v-divider>
                     </template>
 
-                    <v-list-tile @click="sendCode('G32')">
+                    <!--<v-list-tile @click="sendCode('G32')">
                       <v-icon class="mr-1">view_module</v-icon>
                       {{ $t(move.geometry.type === 'delta' ? 'panel.movement.runDelta' : 'panel.movement.runBed') }}
                     </v-list-tile>
@@ -202,7 +202,7 @@
                       {{ $t('panel.movement.disableBedCompensation') }}
                     </v-list-tile>
 
-                    <v-divider></v-divider>
+                    <v-divider></v-divider>-->
 
                     <v-list-tile @click="sendCode('G29')">
                       <v-icon class="mr-1">grid_on</v-icon>
@@ -299,7 +299,7 @@
                 block
                 :disabled="state.isPrinting"
                 color="primary"
-                :code="`G10 P${move.currentWorkplace} L20 X0 Y0 Z0\nM500`"
+                :code="`G10 L20 X0 Y0 Z0\nM500`"
                 :title="$t('button.work.titleAll',[move.currentWorkplace])"
                 class="mr-0 hidden-sm-and-down"
               >{{ $t('button.work.captionAll') }}</code-btn>
@@ -310,7 +310,7 @@
                 color="primary"
                 :disabled="uiFrozen || state.isPrinting"
                 :title="$t('button.work.title', [axis.letter, move.currentWorkplace])"
-                :code="`G10 P${move.currentWorkplace} L20 ${axis.letter}0\nM500`"
+                :code="`G10 L20 ${axis.letter}0\nM500`"
                 class="mr-0"
               >{{ $t('button.work.caption', [axis.letter]) }}</code-btn>
             </v-flex>
@@ -322,6 +322,7 @@
       <v-layout row>
         <v-flex>
           <v-btn
+            :disabled="uiFrozen"
             block
             color="primary"
             @click.native="runFile"
@@ -336,6 +337,7 @@
         <v-flex class="hidden-md-and-up">
           <v-btn
             block
+            :disabled="uiFrozen"
             color="primary"
             @click.native="runFile"
             :title="$t('button.workGoto.titleAll')"
