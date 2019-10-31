@@ -220,7 +220,8 @@ export default {
 		},
 		confirmTouchProbe: {
 			title: 'Exécuter la séquence de sonde tactile',
-			prompt: 'Assurez-vous que la fraise est au-dessus du trou Démarrer ici avec le clip de la sonde tactile fixé.'
+			prompt: 'Assurez-vous que la fraise est au-dessus du trou Démarrer ici avec le clip de la sonde tactile fixé.',
+			promptZ: 'Assurez-vous que la fraise en bout est au-dessus de la section la plus fine de la sonde à toucher, avec le clip de la sonde à toucher fixé.'
 		},
 		touchProbeSuccess: {
 			title: 'Succès',

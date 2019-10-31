@@ -151,8 +151,8 @@ export default {
     },
     touchProbeTypeItems() {
       return [
-        { text: this.$t('panel.settingsTouchProbe.touchProbeXYZ'), value: 0 },
-        { text: this.$t('panel.settingsTouchProbe.touchProbeZ'), value: 1 }
+        { text: this.$t('panel.settingsTouchProbe.touchProbeXYZ'), value: false },
+        { text: this.$t('panel.settingsTouchProbe.touchProbeZ'), value: true }
       ];
     },
     probeType: {
@@ -161,7 +161,9 @@ export default {
       },
       set(value) {
         this.update({ touchProbe: { touchProbeType: value } });
-        this.update({ touchProbe: { touchProbeZOffset: 0 } });
+        if (value == true) {
+          this.update({ touchProbe: { touchProbeZOffset: this.settings.touchProbe.touchProbeZDimension } });
+        }
       }
     },
     endstopDriveNumber: {
@@ -228,6 +230,9 @@ export default {
       },
       set(value) {
         this.update({ touchProbe: { touchProbeZDimension: value } });
+        if (this.settings.touchProbe.touchProbeType == true) {
+          this.update({ touchProbe: { touchProbeZOffset: value } });
+        }
       }
     },
     XOffset: {

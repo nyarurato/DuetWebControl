@@ -1,4 +1,4 @@
-# Duet Web Control 2
+# WorkBee Control 2
 
 ## Project setup
 ```

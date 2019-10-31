@@ -219,7 +219,8 @@ export default {
 		},
 		confirmTouchProbe: {
 			title: '运行测头探测序列',
-			prompt: '确保端铣刀位于附带“接触式探针”夹的“从这里开始”孔上方.'
+			prompt: '确保端铣刀位于附带“接触式探针”夹的“从这里开始”孔上方.',
+			promptZ: '确保端铣刀在测头最薄部分上方的任何位置，并附有测头夹.'
 		},
 		touchProbeSuccess: {
 			title: '成功',

@@ -219,7 +219,9 @@ export default {
 		},
 		confirmTouchProbe: {
 			title: 'Run Touch Probe Sequence',
-			prompt: 'Insure the endmill is above the Start Here hole with the Touch Probe clip attached.'
+			prompt: 'Insure the endmill is above the Start Here hole with the Touch Probe clip attached.',
+			promptZ: 'Insure the endmill is anywhere above the thinnest section of the Touch Probe, with the Touch Probe clip attached.'
+
 		},
 		touchProbeSuccess: {
 			title: 'Success',

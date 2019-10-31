@@ -47,7 +47,7 @@ export default function (hostname) {
 			touchProbe: {
 				touchProbeEnable: false,
 				touchProbeEndstopDriveNumber: 3,
-				touchProbeEndstopAxis: 'EO', 
+				touchProbeEndstopAxis: 'E0', 
 				touchProbeFeedrate: 500,
 				touchProbeXDimension: 60,
 				touchProbeYDimension: 60,
@@ -58,7 +58,7 @@ export default function (hostname) {
 				touchProbeTriggerType: 0,
 				touchProbeEndmillDiameter: 6.35,
 				touchProbeLocation: 'FL',
-				touchProbeType: 0,
+				touchProbeType: false,
 			},
 		},
 		getters: {
@@ -150,7 +150,7 @@ export default function (hostname) {
 				state.touchProbe = {
 					...state.touchProbe, 
 					touchProbeEndstopDriveNumber: 3, 
-					touchProbeEndstopAxis: 'EO', 
+					touchProbeEndstopAxis: 'E0', 
 					touchProbeFeedrate: 500,
 					touchProbeXDimension: 60,
 					touchProbeYDimension: 60,
@@ -159,7 +159,7 @@ export default function (hostname) {
 					touchProbeYOffset: 10,
 					touchProbeZOffset: 5,
 					touchProbeTriggerType: 0,
-					touchProbeType: 0,
+					touchProbeType: false,
 				}
 			},
 			update: (state, payload) => patch(state, payload, true),

@@ -219,7 +219,8 @@ export default {
 		},
 		confirmTouchProbe: {
 			title: 'Führen Sie die Touch Probe-Sequenz aus',
-			prompt: 'Vergewissern Sie sich, dass sich das Schaftfräser über dem Loch Start Here befindet, an dem der Touch Probe-Clip angebracht ist.'
+			prompt: 'Vergewissern Sie sich, dass sich das Schaftfräser über dem Loch Start Here befindet, an dem der Touch Probe-Clip angebracht ist.',
+			promptZ: 'Stellen Sie sicher, dass sich der Schaftfräser an einer beliebigen Stelle über dem dünnsten Abschnitt des Tastkopfs befindet und der Tastkopfclip angebracht ist.'
 		},
 		touchProbeSuccess: {
 			title: 'Erfolg',
