@@ -1,4 +1,6 @@
-# WorkBee Control 2
+# WorkBee Control
+
+A modified version of Duet Web Control tailored for CNC Machines
 
 ## Project setup
 ```
