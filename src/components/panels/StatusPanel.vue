@@ -268,7 +268,7 @@ export default {
 	methods: {
 		displayAxisPosition(axis) {
 			const position = this.displayToolPosition ? axis.userPosition : axis.machinePosition;
-			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 1);
+			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 3);
 		},
 		formatProbeValue(values) {
 			if (values.length === 1) {
