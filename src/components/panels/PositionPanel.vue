@@ -209,13 +209,13 @@ export default {
         : axis.machinePosition;
       return axis.letter === "Z"
         ? this.$displayZ(position, false)
-        : this.$display(position, 1);
+        : this.$display(position, 3);
     },
     displayAxisNativePosition(axis, index) {
       const position = axis.nativePosition;
       return axis.letter === "Z"
         ? this.$displayZ(position, false)
-        : this.$display(position, 1);
+        : this.$display(position, 3);
     },
     probeSpanClasses(probe, index) {
       let result = [];

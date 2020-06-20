@@ -268,11 +268,11 @@ export default {
 	methods: {
 		displayAxisPosition(axis, index) {
 			const position = this.displayToolPosition ? this.move.drives[index].position : axis.machinePosition;
-			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 1);
+			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 3);
 		},
 		displayAxisNativePosition(axis, index) {
 			const position = axis.nativePosition;
-			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 1);
+			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 3);
 		},
 		probeSpanClasses(probe, index) {
 			let result = [];
