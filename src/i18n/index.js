@@ -10,6 +10,7 @@ import fr from './fr.js'
 import ru from './ru.js'
 import tr from './tr.js'
 import zh_cn from './zh_cn.js'
+import ja from './ja.js'
 
 Vue.use(VueI18n)
 
@@ -20,7 +21,8 @@ const messages = {
 	fr,
 	ru,
 	tr,
-	zh_cn
+	zh_cn,
+	ja
 }
 
 /* eslint-disable */
@@ -60,6 +62,6 @@ if (process.env.NODE_ENV !== 'production') {
 /* eslint-enable */
 
 export default new VueI18n({
-	locale: 'en',
+	locale: 'ja',
 	messages
 })
