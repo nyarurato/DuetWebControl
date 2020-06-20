@@ -8,6 +8,7 @@ import de from './de.js'
 import fr from './fr.js'
 import ru from './ru.js'
 import zh_cn from './zh_cn.js'
+import ja from './ja.js'
 
 Vue.use(VueI18n)
 
@@ -39,17 +40,19 @@ if (process.env.NODE_ENV !== 'production') {
 		}
 	}
 
-	compareTranslations(en, de, 'de');
+	compareTranslations(en, ja, 'ja');
 }
 /* eslint-enable */
 
 export default new VueI18n({
-	locale: 'en',
+	//locale: 'en',
+	locale: 'ja',
 	messages: {
 		en,
 		de,
 		fr,
 		ru,
-		zh_cn
+		zh_cn,
+		ja
 	}
 })
