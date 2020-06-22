@@ -13,7 +13,7 @@ export default {
 				sortDescending: '降順ソート',
 				sortAscending: '昇順ソート',
 				sortNone: 'ソートされていません.',
-				activateNone: 'remove sorting有効.',
+				activateNone: 'ソート解除',
 				activateDescending: '降順ソート有効.',
 				activateAscending: '昇順ソート有効.',
 			},
@@ -29,7 +29,7 @@ export default {
 			pageText: '{0}-{1} of {2}',
 		},
 		datePicker: {
-			itemsSelected: '{0} selected',
+			itemsSelected: '{0} 選択',
 		},
 		noDataText: 'データがありません',
 		carousel: {
@@ -43,8 +43,8 @@ export default {
 			moreEvents: '{0} more',
 		},
 		fileInput: {
-			counter: '{0} files',
-			counterSize: '{0} files ({1} in total)',
+			counter: '{0} 個のファイル',
+			counterSize: '{0} 個のファイル (全部で{1})',
 		},
 		timePicker: {
 			am: 'AM',
@@ -122,6 +122,10 @@ export default {
 				caption: 'システムファイル アップロード',
 				title: '1つもしくは複数のシステムファイルをアップロード＆スタート（ドラッグアンドドロップ可）'
 			},
+			sys: {//for workbee control
+				caption: 'システムファイル アップロード',
+				title: '1つもしくは複数のシステムファイルをアップロード＆スタート（ドラッグアンドドロップ可）'
+			},
 			web: {
 				caption: 'webファイル アップロード',
 				title: '1つもしくは複数のwebファイルをアップロード＆スタート（ドラッグアンドドロップ可）'
@@ -134,28 +138,28 @@ export default {
 	},
 	chart: {
 		layer: {
-			caption: 'Layer Chart',
+			caption: 'レイヤーチャート',
 			layerTime: 'Layer Time',
 
 			showLastLayers: 'ラスト {0} レイヤー表示',
 			showAllLayers: 'すべてのレイヤーを表示',
 
 			layer: 'レイヤー {0}',
-			layerDuration: 'Duration: {0}',
+			layerDuration: 'レイヤー時間: {0}',
 			layerHeight: 'レイヤー高さ: {0}',
 			filamentUsage: 'フィラメント使用量: {0}',
-			fractionPrinted: 'File Progress: {0}'
+			fractionPrinted: '進捗: {0}'
 		},
 		temperature: {
-			caption: 'Temperature Chart',
+			caption: '温度チャート',
 			heater: 'ヒーター {0}',
-			noData: 'No Data'
+			noData: 'データなし'
 		}
 	},
 	dialog: {
 		changeMoveStep: {
-			title: 'move step変更',
-			prompt: 'クリックした移動ボタンに新しい値を入力してください:'
+			title: '移動量変更',
+			prompt: 'クリックしたボタンに新しい値を入力してください:'
 		},
 		configUpdated: {
 			title: 'ボードをリセットしますか？',
@@ -164,11 +168,11 @@ export default {
 		connect: {
 			title: 'マシンへ接続',
 			prompt: '接続するマシンのホスト名とパスワードを入力してください:',
-			hostPlaceholder: 'Hostname',
-			hostRequired: 'Hostname is required',
-			passwordPlaceholderOptional: 'Password (optional)',
-			passwordPlaceholder: 'Password',
-			passwordRequired: 'Password is required',
+			hostPlaceholder: 'ホスト名',
+			hostRequired: 'ホスト名が必要です',
+			passwordPlaceholderOptional: 'パスワード (オプション)',
+			passwordPlaceholder: 'パスワード',
+			passwordRequired: 'パスワードが必要です',
 			connect: '接続'
 		},
 		connection: {
@@ -179,16 +183,16 @@ export default {
 			standBy: 'お待ちください...'
 		},
 		editExtrusionAmount: {
-			title: '押出量の変更',
+			title: '押出し量の変更',
 			prompt: 'クリックしたボタンに新しい量を入力してください:'
 		},
 		editExtrusionFeedrate: {
-			title: '押出速度の変更',
+			title: '押出し速度の変更',
 			prompt: 'クリックしたボタンに新しい量を入力してください:'
 		},
 		factoryReset: {
 			title: 'ファクトリーリセットを行いますか？',
-			prompt: '工場出荷時リセットを実行してもよろしいですか？保存された設定はすべて失われます。'
+			prompt: '工場出荷時リセットを実行してもよろしいですか？保存された設定はすべて失われます'
 		},
 		filament: {
 			titleChange: 'フィラメント変更',
@@ -226,9 +230,9 @@ export default {
 			prompt: '新しい名前を入力してください:'
 		},
 		resetHeaterFault: {
-			title: 'Reset Heater Fault',
-			prompt: 'A heater fault has occurred on heater {0}. It is strongly advised to turn off your machine now and to check your wiring before you continue. If you are absolutely sure that this is not a phsical problem, you can reset the heater fault ON YOUR OWN RISK. Be aware that this is NOT RECOMMENDED and can lead to further problems. How would you like to proceed?',
-			resetFault: 'Reset Fault'
+			title: 'ヒーターフォルトをリセット',
+			prompt: 'ヒーター{0}でヒーターフォルトが発生しました。続ける前に機械の電源を切り、配線をチェックすることを強くお勧めします。これが物理的な問題ではないと確信している場合は、**自己責任**でヒーターフォルトをリセットすることができます。これは**推奨されず**、さらなる問題を引き起こす可能性があることに注意してください。どうしますか？',
+			resetFault: 'リセットフォルト'
 		},
 		runMacro: {
 			title: '{0} 実行',
@@ -243,12 +247,12 @@ export default {
 			prompt: '少なくとも1つのファームウェアアップデートがアップロードされています。今すぐインストールしますか？'
 		},
 		powerLossConfirm: {
-			title: '停電からの再開をしますか？',
-			prompt: '停電からの再開をしますか？'
+			title: '再開しますか？',
+			prompt: '再開しますか？'
 		},
 		powerLossSpindleConfirm: {
-			title: 'ルータ・スピンドル オン？',
-			prompt: 'ルータ・スピンドルが回転し、正しい回転数になっていることを確認してください。'
+			title: 'ルーター・スピンドル オン？',
+			prompt: 'ルーター・スピンドルが回転し、正しい回転数になっていることを確認してください。'
 		},
 		controlledPowerOffDialog: {
 			message: '機械は一時停止しています．お待ちください．',
@@ -279,6 +283,7 @@ export default {
 		gcodes: 'G-Codes ディレクトリ',
 		macros: 'Macros ディレクトリ',
 		system: 'System ディレクトリ',
+		sys: 'System ディレクトリ',//for workbee control
 		web: 'WWW ディレクトリ'
 	},
 	error: {
@@ -307,7 +312,7 @@ export default {
 		filelistRequestFailed: 'ファイルのリストの取得に失敗しました',
 		fileinfoRequestFailed: '{0}のファイルの情報取得に失敗しました',
 		filamentsLoadFailed: 'フィラメントの読み込みに失敗しました',
-		move: '{0} to {1}の移動に失敗しました'
+		move: '{0} から {1}への移動に失敗しました'
 	},
 	events: {
 		connected: '{0}へ接続',
@@ -351,7 +356,7 @@ export default {
 			simulating: 'シミュレーション中',
 			busy: 'ビジー',
 			changingTool: '工具交換中',
-			idle: 'Idle',
+			idle: 'アイドル',
 			unknown: 'Unknown'
 		},
 		rpm: 'RPM',
@@ -386,7 +391,7 @@ export default {
 	},
 	list: {
 		baseFileList: {
-			fileName: 'Filename',
+			fileName: 'ファイル名',
 			size: 'サイズ',
 			lastModified: '最終変更',
 			download: 'ダウンロード',
@@ -428,15 +433,16 @@ export default {
 			generatedBy: 'Generated by',
 
 			noJobs: 'ジョブなし',
-			start: 'Start File',
-			simulate: 'Simulate File'
+			start: 'スタート',
+			simulate: 'シミュレーション'
 		},
 		system: {
 			noFiles: 'システムファイルなし',
 			configToolNote: 'コンフィグツールにて編集'
 		},
-		sys: {
-			noFiles: 'システムファイルなし'
+		sys: {// for workbee control
+			noFiles: 'システムファイルなし',
+			configToolNote: 'コンフィグツールにて編集'
 		}
 	},
 	menu: {
@@ -488,11 +494,11 @@ export default {
 		download: {
 			title: 'ダウンロード中 {0} @ {1}, {2}% 完了',
 			message: 'ファイルがダウンロードされるまでお待ちください...',
-			success: '{1}の後，{0}のダウンロードに成功',
+			success: '{1}にて，{0}のダウンロードに成功',
 			successMulti: '{0}個のファイルのダウンロードに成功しました ',
 			error: '{0}のダウンロードに失敗しました'
 		},
-		message: 'Message',
+		message: 'メッセージ',
 		mount: {
 			successTitle: 'SDカード マウント',
 			errorTitle: 'SDカードのマウントに失敗'
@@ -509,8 +515,8 @@ export default {
 			successMessage: '{0}のフィラメントを作成しました'
 		},
 		rename: {
-			success: '{0} to {1}の名前変更に成功しました',
-			error: '{0} to {1}の名前を変更に失敗しました',
+			success: '{0} から {1}への名前変更に成功しました',
+			error: '{0} から {1}への名前を変更に失敗しました',
 		},
 		renameFilament: {
 			errorTitle: 'フィラメントの名前を変更に失敗しました',
@@ -536,16 +542,16 @@ export default {
 			current: '現在のオフセット量: {0}'
 		},
 		extrude: {
-			caption: '押出制御',
+			caption: '押出し制御',
 			mix: 'ミックス',
 			mixRatio: 'ミックス比率:',
-			amount: 'Feed amount in {0}:',
-			feedrate: 'Feedrate in {0}:',
+			amount: 'フィード量 {0}:',
+			feedrate: 'フィードレート {0}:',
 			retract: '引き込み',
 			extrude: '押出し'
 		},
 		extrusionFactors: {
-			caption: 'Extrusion Factors',
+			caption: '押出し ファクター',
 			changeVisibility: 'Change Visibility',
 			extruder: 'エクストルーダー {0}',
 			noExtruders: 'エクストルーダー'
@@ -570,13 +576,13 @@ export default {
 			axes: '軸:',
 			notAvailable: '高さマップが利用できません',
 			numPoints: '点数: {0}',
-			radius: 'Probing radius: {0}',
-			area: 'Probe area: {0}',
+			radius: 'プロービング半径: {0}',
+			area: 'プローブ エリア: {0}',
 			maxDeviations: '最大偏差: {0} / {1}',
 			meanError: '平均誤差: {0}',
 			rmsError: 'RMS誤差: {0}',
 			topView: 'Top view',
-			colorScheme: 'Color scheme:',
+			colorScheme: '配色:',
 			terrain: 'Terrain',
 			heat: 'Heat',
 			reload: '高さマップリロード'
@@ -598,7 +604,7 @@ export default {
 			autoSleep: 'End G-Code有効',
 			powerLossResume: 'Power Loss再開',
 			controlledPowerOff: '制御電源オフ',
-			captionPowerLoss: 'Power Loss Job Control'
+			captionPowerLoss: 'Power Loss ジョブ制御'
 		},
 		jobData: {
 			caption: '取得データ',
@@ -625,14 +631,14 @@ export default {
 		movement: {
 			caption: '機械の動作',
 			compensation: '補正＆キャリブレーション',
-			runBed: 'True Bed Levelling (G32)',
-			runDelta: 'Delta Calibration (G32)',
+			runBed: 'ベッド レベリング(G32)',
+			runDelta: 'デルタ型 キャリブレーション (G32)',
 			compensationInUse: '使用中の補正: {0}',
 			disableBedCompensation: 'Bed Compensation無効化 (M561)',
 			disableMeshCompensation: 'Mesh Compensation無効化 (G29 S2)',
-			editMesh: 'Define Area for Mesh Compensation (M557)',
-			runMesh: 'Run Mesh Compensation (G29)',
-			loadMesh: 'Load Saved Height Map from SD Card (G29 S1)',
+			editMesh: 'Mesh Compensationのエリアを定義 (M557)',
+			runMesh: 'Mesh Compensationを実行 (G29)',
+			loadMesh: 'SDカードから高さマップをロード(G29 S1)',
 			axesNotHomed: '以下の軸はホームにありません:',
 			noAxes: 'No Axes',
 			workSelect: '選択されたワーク座標系',
@@ -658,7 +664,7 @@ export default {
 			caption: '通信',
 			pingInterval: 'アイドル時のPING間隔 (ms)',
 			ajaxRetries: 'AJAXの最大再試行回数',
-			updateInterval: 'Update interval ({0})',
+			updateInterval: 'Updateインターバル({0})',
 			extendedUpdateEvery: 'Extendedステータス更新間隔',
 			fileTransferRetryThreshold: 'ファイル転送の再試行しきい値 ({0})',
 			crcUploads: 'アップロードにCRC32チェックサムを使用',
@@ -732,12 +738,12 @@ export default {
 			touchProbeTriggerCaption: 'タッチプローブのトリガーレベル',
 			touchProbeActiveHigh: 'Active High',
 			touchProbeActiveLow: 'Active Low',
-			touchProbeType: 'Touch Probe Type',
-			touchProbeXYZ: 'XYZ Touch Probe',
-			touchProbeZ: 'Z Touch Probe',
+			touchProbeType: 'タッチプローブ タイプ',
+			touchProbeXYZ: 'XYZ タッチプローブ',
+			touchProbeZ: 'Z タッチプローブ',
 		},
 		speedFactor: {
-			caption: 'Speed Factor'
+			caption: 'スピード ファクター'
 		},
 		status: {
 			caption: 'ステータス',
@@ -745,12 +751,12 @@ export default {
 			toolPosition: '工具位置',
 			machinePosition: 'ワーク座標系位置',
 			nativePosition: '機械座標系位置',
-			extruders: 'Extruder Drives',
+			extruders: 'エクストルーダー',
 			extruderDrive: 'Drive {0}',
 			speeds: 'スピード',
-			requestedSpeed: 'Requested Speed',
+			requestedSpeed: '要求スピード',
 			topSpeed: 'Top Speed',
-			sensors: 'Sensors',
+			sensors: 'センサー',
 			mcuTemp: 'MCU温度',
 			minMax: '最小: {0}, 最大: {1}',
 			vIn: 'Vin',
@@ -765,10 +771,10 @@ export default {
 			toolPosition: '工具位置',
 			machinePosition: 'ワーク座標系位置',
 			nativePosition: '機械座標系位置',
-			extruders: 'Extruder Drives',
+			extruders: 'エクストルーダー',
 			extruderDrive: 'Drive {0}',
-			speeds: 'Speeds',
-			requestedSpeed: 'Requested Speed',
+			speeds: 'スピード',
+			requestedSpeed: '要求スピード',
 			topSpeed: 'Top Speed',
 			sensors: 'センサー',
 			mcuTemp: 'MCU温度',
@@ -784,26 +790,26 @@ export default {
 			mode: 'モード: {0}',
 			toolPosition: '工具位置',
 			machinePosition: 'ワーク座標系位置',
-			extruders: 'Extruder Drives',
+			extruders: 'エクストルーダー',
 			extruderDrive: 'Drive {0}',
 			speeds: 'スピード',
-			requestedSpeed: 'Requested Speed',
+			requestedSpeed: '要求スピード',
 			topSpeed: 'Top Speed',
 			sensors: 'センサー',
 			mcuTemp: 'MCU温度',
 			mcuTempTitle: '最小: {0}, 最大: {1}',
 			vIn: 'Vin',
 			vInTitle: '最小: {0}, 最大 {1}',
-			fanRPM: 'Fan RPM',
+			fanRPM: 'ファン RPM',
 			probe: 'Z-Probe|Z-Probes',
 			noStatus: 'No Status',
-			endstopStatus: 'Endstop Status',
+			endstopStatus: 'エンドストップ ステータス',
 			endstopTriggered: 'Triggered',
 			endstopNotTriggered: 'Not Triggered'
 		},
 		tools: {
 			caption: '工具',
-			controlAll: 'Control All',
+			controlAll: 'すべて制御',
 			turnEverythingOff: 'すべて電源オフ',
 			allActiveTemperatures: 'すべてのアクティブ温度を設定',
 			allStandbyTemperatures: 'すべてのスタンバイ温度を設定',
@@ -816,13 +822,13 @@ export default {
 			active: 'アクティブ',
 			standby: 'スタンバイ',
 			bed: 'ベッド {0}',
-			chamber: 'Chamber {0}',
+			chamber: 'チャンバー {0}',
 			extra: {
 				caption: 'Extra',
 				sensor: 'センサー',
 				sensorIndex: 'センサー {0}',
 				value: '値',
-				showInChart: 'Show in Chart',
+				showInChart: 'チャートにて表示',
 				noItems: 'No Extra Sensors'
 			},
 			noTools: '工具なし'
@@ -837,13 +843,13 @@ export default {
 			probeYCaption: 'Y',
 			probeZTitle: 'プローブ Z 軸',
 			probeZCaption: 'Z',
-			probeCornerTitle: 'Probe Corner',
-			probeCornerCaption: 'Probe Corner',
+			probeCornerTitle: 'プローブ コーナー',
+			probeCornerCaption: 'プローブ コーナー',
 			probeLocation: 'プローブ位置',
-			probeLocationFrontLeft: 'Front Left Corner',
-			probeLocationFrontRight: 'Front Right Corner',
-			probeLocationBackLeft: 'Back Left Corner',
-			probeLocationBackRight: 'Back Right Corner',
+			probeLocationFrontLeft: '正面 左 コーナー',
+			probeLocationFrontRight: '正面 右 コーナー',
+			probeLocationBackLeft: '背面 左 コーナー',
+			probeLocationBackRight: '背面 右 コーナー',
 		},
 		webcam: {
 			caption: 'ウェブカメラ監視',
