@@ -1,9 +1,9 @@
 <template>
 	<v-card>
 		<v-card-title>
-			<span>WorkBee Control 1.0.0</span>
+			<span>Cbeam Control 1.0.0</span>
 			<v-spacer></v-spacer>
-			<a href="https://github.com/lockryan/DuetWebControl/tree/workbeecontrol" target="_blank">
+			<a href="https://github.com/nyarurato/DuetWebControl/tree/workbeecontrol-ja" target="_blank">
 				<v-icon small>star</v-icon> GitHub
 			</a>
 		</v-card-title>
@@ -13,6 +13,9 @@
 			<br/>
 			<br/>
 			{{ $t('panel.settingsAbout.modifiedBy') }} <a href="mailto:sales@ooznest.co.uk">Ryan Lock</a> {{ $t('panel.settingsAbout.for') }} <a href="https://www.ooznest.co.uk" target="_blank">Ooznest</a>
+			<br/>
+			<br/>
+			Changed to CBeam Control (WorkBee Control JapaneseEdition) : <a href="https://bbs.avalontech.jp/u/nyaru/">nyarurato</a> {{ $t('panel.settingsAbout.for') }} <a href="https://avalontech.jp/" target="_blank">Avalontech</a>
 			<br/>
 			<br/>
 			{{ $t('panel.settingsAbout.licensedUnder') }} <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3</a>

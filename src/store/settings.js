@@ -9,7 +9,7 @@ import Path from '../utils/path.js'
 export default {
 	namespaced: true,
 	state: {
-		language: 'en',
+		language: 'ja',
 		lastHostname: location.host,
 		darkTheme: true,
 		useBinaryPrefix: true,
