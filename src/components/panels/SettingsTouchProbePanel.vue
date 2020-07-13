@@ -33,7 +33,7 @@
             :label="$t('panel.settingsTouchProbe.touchProbeEndstopNumberCaption')"
             class="ma-0 pa-0"
             v-model="endstopDriveNumber"
-            :items="endstopItems"
+            :items="InputPinItems"
           ></v-select>
         </v-flex>
         <v-flex xs6 sm6 md6 class="mt-3">
@@ -172,8 +172,9 @@ export default {
       },
       set(value) {
         this.update({ touchProbe: { touchProbeEndstopDriveNumber: value } });
+        this.update({ touchProbe: { touchProbeEndstopDriveNumber: value } });
         this.update({
-          touchProbe: { touchProbeEndstopAxis: this.endstopItems[value].text }
+          touchProbe: { touchProbeEndstopAxis: this.InputPinItems[value].text }
         });
       }
     },
@@ -183,13 +184,13 @@ export default {
         { text: this.$t('panel.settingsTouchProbe.touchProbeActiveHigh'), value: 1 }
       ];
     },
-    endstopItems() {
+    InputPinItems() {
       return [
-        { text: "X", value: 0 },
-        { text: "Y", value: 1 },
-        { text: "Z", value: 2 },
-        { text: "E0", value: 3 },
-        { text: "E1", value: 4 }
+        { text: "io3.in", value: 0 },
+        { text: "io4.in", value: 1 },
+        { text: "io5.in", value: 2 },
+        { text: "io6.in", value: 3 },
+        { text: "io7.in", value: 4 }
       ];
     },
     triggerType: {

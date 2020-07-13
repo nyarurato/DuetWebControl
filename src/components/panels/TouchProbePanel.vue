@@ -211,39 +211,59 @@ export default {
     xProbeClick() {
       this.setCornerDirection();
       this.probeSequence = 'x';
-      this.probeCode = `M400\nG91\nM563 P999 S"XYZ-Probe"
-      \nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection)} Y${(((this.yDimension/2)-this.yOffset)*this.yDirection)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT999\nM585 X10 E${this.settings.touchProbe.touchProbeEndstopDriveNumber} L${this.settings.touchProbe.touchProbeTriggerType} F${this.settings.touchProbe.touchProbeFeedrate} S${this.xProbeDirection}\nT-1\nM400\nG10 L20 X${((this.xOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*(-1)*this.xDirection}\nG1 X${-5*this.xDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nM400\nM500\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Y${(((this.yDimension/2)-this.yOffset)*this.yDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG90\nG1 X0 F${this.settings.touchProbe.touchProbeFeedrate}
-      \nM563 P999 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`
+      this.PinNameIncludeInverseOperator = (this.settings.touchProbe.touchProbeTriggerType == 0) ? ("!"+ this.settings.touchProbe.touchProbeEndstopAxis):(this.settings.touchProbe.touchProbeEndstopAxis);
+      this.probeCode = `M400\nG91
+      \nM558 P5 F${this.settings.touchProbe.touchProbeFeedrate} C"${this.PinNameIncludeInverseOperator}"
+      \nM563 P10 S"XYZ-Probe"
+      \nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection)} Y${(((this.yDimension/2)-this.yOffset)*this.yDirection)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT10\nM585 X10 F${this.settings.touchProbe.touchProbeFeedrate} S${this.xProbeDirection}\nT-1\nM400\nG10 L20 X${((this.xOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*(-1)*this.xDirection}\nG1 X${-5*this.xDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nM400\nM500\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Y${(((this.yDimension/2)-this.yOffset)*this.yDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG90\nG1 X0 F${this.settings.touchProbe.touchProbeFeedrate}
+      \nM563 P10 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`
       this.dialogPrompt = this.$t('dialog.confirmTouchProbe.prompt');
       this.showTouchProbeConfirm = true;
     },
     yProbeClick() {
       this.setCornerDirection();
       this.probeSequence = 'y';
-      this.probeCode = `M400\nG91\nM563 P999 S"XYZ-Probe"
-      \nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection)} Y${(((this.yDimension/2)-this.yOffset)*this.yDirection)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Y${(((this.yDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.yDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT999\nM585 Y10 E${this.settings.touchProbe.touchProbeEndstopDriveNumber} L${this.settings.touchProbe.touchProbeTriggerType} F${this.settings.touchProbe.touchProbeFeedrate} S${this.yProbeDirection}\nT-1\nM400\nG10 L20 Y${((this.yOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*(-1)*this.yDirection}\nG1 Y${-5*this.yDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nM400\nM500\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG90\nG1 Y0 F${this.settings.touchProbe.touchProbeFeedrate}
-      \nM563 P999 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`
+      this.PinNameIncludeInverseOperator = (this.settings.touchProbe.touchProbeTriggerType == 0) ? ("!"+ this.settings.touchProbe.touchProbeEndstopAxis):(this.settings.touchProbe.touchProbeEndstopAxis);
+      this.probeCode = `M400\nG91
+      \nM558 P5 F${this.settings.touchProbe.touchProbeFeedrate} C"${this.PinNameIncludeInverseOperator}"
+      \nM563 P10 S"XYZ-Probe"
+      \nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection)} Y${(((this.yDimension/2)-this.yOffset)*this.yDirection)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Y${(((this.yDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.yDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT10\nM585 Y10 F${this.settings.touchProbe.touchProbeFeedrate} S${this.yProbeDirection}\nT-1\nM400\nG10 L20 Y${((this.yOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*(-1)*this.yDirection}\nG1 Y${-5*this.yDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nM400\nM500\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG90\nG1 Y0 F${this.settings.touchProbe.touchProbeFeedrate}
+      \nM563 P10 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`
       this.dialogPrompt = this.$t('dialog.confirmTouchProbe.prompt');
       this.showTouchProbeConfirm = true;
     },
     zProbeClick() {
       this.setCornerDirection();
       this.probeSequence = 'z';
-      this.probeCode = `M400\nG91\nM563 P999 S"XYZ-Probe"
-      \nT999\nM585 Z${(this.settings.touchProbe.touchProbeZDimension-this.settings.touchProbe.touchProbeZOffset)+10} E${this.settings.touchProbe.touchProbeEndstopDriveNumber} L${this.settings.touchProbe.touchProbeTriggerType} F${this.settings.touchProbe.touchProbeFeedrate} S1\nT-1\nG10 L20 Z${this.settings.touchProbe.touchProbeZOffset}\nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nM500\nG90
-      \nM563 P999 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`
+      this.PinNameIncludeInverseOperator = (this.settings.touchProbe.touchProbeTriggerType == 0) ? ("!"+ this.settings.touchProbe.touchProbeEndstopAxis):(this.settings.touchProbe.touchProbeEndstopAxis);
+      this.probeCode = `M558 P5 F${this.settings.touchProbe.touchProbeFeedrate} C"${this.PinNameIncludeInverseOperator}"
+      \nG30 S-1
+      \nG10 L20 Z${(-1.0 * this.settings.touchProbe.touchProbeZDimension)}
+      \nG91\nG0 Z3\nG90
+      \nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1
+      `;
+      /*
+      `M400\nG91\nM563 P49 S"XYZ-Probe"
+      \nT49
+      \nM558 P5 F${this.settings.touchProbe.touchProbeFeedrate} C"${this.PinNameIncludeInverseOperator}"
+      \nM585 Z${(this.settings.touchProbe.touchProbeZDimension-this.settings.touchProbe.touchProbeZOffset)+10} S1\nT-1\nG10 L20 Z${this.settings.touchProbe.touchProbeZOffset}\nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nM500\nG90
+      \nM563 P49 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`
+      */
       this.dialogPrompt = this.$t('dialog.confirmTouchProbe.promptZ');
       this.showTouchProbeConfirm = true;
     },
     cornerProbeClick() {
       this.setCornerDirection();
       this.probeSequence = 'corner';
-      this.probeCode = `M400\nG91\nM563 P999 S"XYZ-Probe"
-      \nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection)} Y${(((this.yDimension/2)-this.yOffset)*this.yDirection)} F${this.settings.touchProbe.touchProbeFeedrate}\nT999\nM585 Z10 E${this.settings.touchProbe.touchProbeEndstopDriveNumber} L${this.settings.touchProbe.touchProbeTriggerType} F${this.settings.touchProbe.touchProbeFeedrate} S1\nT-1\nM400\nG10 L20 Z${this.settings.touchProbe.touchProbeZOffset}\nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}
-      \nG1 X${(((this.xDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT999\nM585 X10 E${this.settings.touchProbe.touchProbeEndstopDriveNumber} L${this.settings.touchProbe.touchProbeTriggerType} F${this.settings.touchProbe.touchProbeFeedrate} S${this.xProbeDirection}\nT-1\nM400\nG10 L20 X${((this.xOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*(-1)*this.xDirection}\nG1 X${-5*this.xDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(5+(this.xDimension/2))*this.xDirection} Y${(((this.yDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.yDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}
-      \nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT999
-      \nM585 Y10 E${this.settings.touchProbe.touchProbeEndstopDriveNumber} L${this.settings.touchProbe.touchProbeTriggerType} F${this.settings.touchProbe.touchProbeFeedrate} S${this.yProbeDirection}\nT-1\nM400\nG10 L20 Y${((this.yOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*-1*this.yDirection}\nG1 Y${-5*this.yDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nM400\nM500\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG90\nG1 X0 Y0 F${this.settings.touchProbe.touchProbeFeedrate}
-      \nM563 P999 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`;
+      this.PinNameIncludeInverseOperator = (this.settings.touchProbe.touchProbeTriggerType == 0) ? ("!"+ this.settings.touchProbe.touchProbeEndstopAxis):(this.settings.touchProbe.touchProbeEndstopAxis);
+      this.probeCode = `M400\nG91
+      \nM558 P5 F${this.settings.touchProbe.touchProbeFeedrate} C"${this.PinNameIncludeInverseOperator}"; add for cbeam control
+      \nM563 P10 S"XYZ-Probe"
+      \nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection)} Y${(((this.yDimension/2)-this.yOffset)*this.yDirection)} F${this.settings.touchProbe.touchProbeFeedrate}\nT10\nM585 Z10 F${this.settings.touchProbe.touchProbeFeedrate} S1\nT-1\nM400\nG10 L20 Z${this.settings.touchProbe.touchProbeZOffset}\nG1 Z5 F${this.settings.touchProbe.touchProbeFeedrate}
+      \nG1 X${(((this.xDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT10\nM585 X10 F${this.settings.touchProbe.touchProbeFeedrate} S${this.xProbeDirection}\nT-1\nM400\nG10 L20 X${((this.xOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*(-1)*this.xDirection}\nG1 X${-5*this.xDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(5+(this.xDimension/2))*this.xDirection} Y${(((this.yDimension/2)+5+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*this.yDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}
+      \nG1 Z${(-5-(this.settings.touchProbe.touchProbeZDimension/2))} F${this.settings.touchProbe.touchProbeFeedrate}\nT10
+      \nM585 Y10 F${this.settings.touchProbe.touchProbeFeedrate} S${this.yProbeDirection}\nT-1\nM400\nG10 L20 Y${((this.yOffset)+(this.settings.touchProbe.touchProbeEndmillDiameter/2))*-1*this.yDirection}\nG1 Y${-5*this.yDirection} F${this.settings.touchProbe.touchProbeFeedrate}\nM400\nM500\nG1 Z${5+(this.settings.touchProbe.touchProbeZDimension/2)} F${this.settings.touchProbe.touchProbeFeedrate}\nG1 X${(((this.xDimension/2)-this.xOffset)*this.xDirection*(-1))} F${this.settings.touchProbe.touchProbeFeedrate}\nG90\nG1 X0 Y0 F${this.settings.touchProbe.touchProbeFeedrate}
+      \nM563 P10 D-1 H-1\nM291 P"${this.$t("dialog.touchProbeSuccess.prompt")}" R"${this.$t("dialog.touchProbeSuccess.title")}" S1`;
       this.dialogPrompt = this.$t('dialog.confirmTouchProbe.prompt');
       this.showTouchProbeConfirm = true;
     },
@@ -252,7 +272,7 @@ export default {
 			try {
 				await this.upload({ filename: 'sys/probe.g', content });
         this.$emit('editComplete', 'probe.g');
-        await this.sendCode(`M98 Pprobe.g`)
+        await this.sendCode(`M98 P"probe.g"`)
 			} catch (e) {
 				// TODO Optionally ask user to save file somewhere else
 			}
