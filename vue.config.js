@@ -9,11 +9,11 @@ module.exports = {
 				cache: true
 			}),
 			new ZipPlugin({
-				filename: 'WorkBeeControl-Duet2.zip',
+				filename: 'CbeamControl-Duet2.zip',
 				include: [/\.gz$/, /\.woff$/, /\.woff2$/],
 			}),
 			new ZipPlugin({
-				filename: 'WorkBeeControl-Duet3.zip',
+				filename: 'CbeamControl-Duet3.zip',
 				exclude: [/\.gz$/, /\.zip$/]
 			})
 		] : []

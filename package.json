@@ -1,10 +1,10 @@
 {
-  "name": "workbeecontrol",
+  "name": "cbeamcontrol",
   "version": "1.0.0",
-  "repository": "github:lockryan/DuetWebControl#workbeecontrol",
-  "homepage": "https://ooznest.co.uk)",
+  "repository": "github:nyarurato/DuetWebControl#workbeecontrol-ja",
+  "homepage": "https://bbs.avalontech.jp/u/nyaru",
   "license": "GPL-3.0",
-  "author": "Ryan Lock <sales@ooznest.co.uk> (https://ooznest.co.uk)",
+  "author": "nyarurato <nyarurato202@gmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

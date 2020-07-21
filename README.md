@@ -1,5 +1,6 @@
-# WorkBee Control
+# Cbeam Control
 
+Cbeam Control based on WorkBee Control
 A modified version of Duet Web Control tailored for CNC Machines
 
 ## Project setup

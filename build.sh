@@ -38,16 +38,16 @@ if [ -f !"./core/reprap.htm" ] ; then
 fi
 
 # Get the current version
-VERSION=$(grep -oP "WorkBee Control v\K(.*)" ./core/reprap.htm)
+VERSION=$(grep -oP "Cbeam Control v\K(.*)" ./core/reprap.htm)
 
 # Create an empty build directory and clean up
 if [ -d "./build" ] ; then
 	rm -r ./build
 fi
 mkdir ./build
-rm -f ./WorkBeeControl-*.zip
+rm -f ./Cbeam Control-*.zip
 
-echo "=> Building compressed WorkBee Control v$VERSION bundle"
+echo "=> Building compressed Cbeam Control v$VERSION bundle"
 
 # Compress favicon
 echo "Compressing favicon"
